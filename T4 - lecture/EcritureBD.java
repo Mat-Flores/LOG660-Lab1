@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Insertions Oracle du chargement Webflix.
- * PreparedStatement et addBatch evitent les problemes de caracteres reserves
- * et limitent les allers-retours vers la base.
+ * Insertions Oracle du chargement Webflix, une ligne a la fois.
+ * Une erreur n'annule que la ligne en cours. Les lignes deja confirmees restent.
+ * PreparedStatement evite les problemes de caracteres reserves et de dates.
  *
  * Une personne ou un film dont un champ obligatoire manque n'est pas insere.
  * Le CVV, absent des XML, est genere. Chaque film insere recoit 1 a 100 copies.
@@ -28,7 +28,6 @@ public class EcritureBD {
     private static final String URL_BD = "jdbc:oracle:thin:@//localhost:1521/XEPDB1";
     private static final String UTILISATEUR_BD = "LOG660";
     private static final String MOT_DE_PASSE_BD = "LOG660";
-    private static final int TAILLE_LOT = 500;
 
     private Connection connexion;
 
@@ -47,15 +46,6 @@ public class EcritureBD {
     private PreparedStatement psClient;
     private PreparedStatement psCarte;
 
-    private int lotPersonnes;
-    private int lotFilmGenre;
-    private int lotFilmPays;
-    private int lotInterpretations;
-    private int lotScenaristes;
-    private int lotAnnonces;
-    private int lotCopies;
-    private int lotClients;
-
     private int personnesLues;
     private int personnesInserees;
     private int personnesRejetees;
@@ -72,8 +62,6 @@ public class EcritureBD {
 
     private final HashSet<Integer> personnesInsereesIds = new HashSet<Integer>();
     private final HashMap<String, Integer> idParNom = new HashMap<String, Integer>();
-    private final List<Integer> idsPersonneEnAttente = new ArrayList<Integer>();
-    private final List<String> nomsPersonneEnAttente = new ArrayList<String>();
     private final HashSet<String> genresConnus = new HashSet<String>();
     private final HashSet<String> paysConnus = new HashSet<String>();
     private final List<String> genresDuFilm = new ArrayList<String>();
@@ -100,22 +88,15 @@ public class EcritureBD {
             return;
         }
         try {
-            if (GestionFlux.texteTropLongPourChaine(bioNet)) {
-                terminerLotPersonnes();
-                remplirPersonne(id, nomNet, naissance, lieuNet, photoNet, bioNet);
-                psPersonne.executeUpdate();
-                connexion.commit();
-                retenirPersonne(id, nomNet);
-            } else {
-                remplirPersonne(id, nomNet, naissance, lieuNet, photoNet, bioNet);
-                psPersonne.addBatch();
-                idsPersonneEnAttente.add(id);
-                nomsPersonneEnAttente.add(nomNet);
-                lotPersonnes++;
-                if (lotPersonnes >= TAILLE_LOT) {
-                    terminerLotPersonnes();
-                }
-            }
+            psPersonne.setInt(1, id);
+            psPersonne.setString(2, nomNet);
+            psPersonne.setDate(3, naissance);
+            psPersonne.setString(4, lieuNet);
+            psPersonne.setString(5, photoNet);
+            GestionFlux.fixerTexte(psPersonne, 6, bioNet);
+            psPersonne.executeUpdate();
+            connexion.commit();
+            retenirPersonne(id, nomNet);
         } catch (SQLException e) {
             personnesRejetees++;
             annuler(e, "personne " + id);
@@ -154,25 +135,26 @@ public class EcritureBD {
             psFilm.setString(7, resumeNet);
             psFilm.setString(8, posterNet);
             psFilm.executeUpdate();
+        } catch (SQLException e) {
+            filmsRejetesChamp++;
+            annuler(e, "film " + id);
+            return;
+        }
 
-            insererGenres(id, genres);
-            insererPays(id, pays);
-            insererRoles(id, roles);
-            insererScenaristes(id, scenaristes);
-            insererAnnonces(id, annonces);
-            int copiesAvant = copiesCreees;
-            insererCopies(id);
-            try {
-                validerFilm();
-                filmsInseres++;
-            } catch (SQLException e) {
-                copiesCreees = copiesAvant;
-                throw e;
-            }
+        insererGenres(id, genres);
+        insererPays(id, pays);
+        insererRoles(id, roles);
+        insererScenaristes(id, scenaristes);
+        insererAnnonces(id, annonces);
+        insererCopies(id);
+        try {
+            connexion.commit();
+            filmsInseres++;
+            genresDuFilm.clear();
+            paysDuFilm.clear();
         } catch (SQLException e) {
             filmsRejetesChamp++;
             oublierReferentielsDuFilm();
-            viderTamponsFilms();
             annuler(e, "film " + id);
         }
     }
@@ -224,7 +206,7 @@ public class EcritureBD {
             psUtilisateur.setString(5, telNet);
             psUtilisateur.setDate(6, naissance);
             psUtilisateur.setString(7, motDePasse);
-            psUtilisateur.addBatch();
+            psUtilisateur.executeUpdate();
 
             psAdresse.setInt(1, id);
             psAdresse.setString(2, voie[0]);
@@ -232,102 +214,50 @@ public class EcritureBD {
             psAdresse.setString(4, villeNet);
             psAdresse.setString(5, provinceNet);
             psAdresse.setString(6, codePostalNet);
-            psAdresse.addBatch();
+            psAdresse.executeUpdate();
 
             psClient.setInt(1, id);
             psClient.setString(2, forfaitNet);
-            psClient.addBatch();
+            psClient.executeUpdate();
 
             psCarte.setInt(1, id);
             psCarte.setString(2, carteNet);
             psCarte.setString(3, noCarteNet);
             psCarte.setDate(4, expiration);
             psCarte.setString(5, cvv);
-            psCarte.addBatch();
+            psCarte.executeUpdate();
 
-            lotClients++;
+            connexion.commit();
             clientsInseres++;
-            if (lotClients >= TAILLE_LOT) {
-                terminerLotClients();
-            }
         } catch (SQLException e) {
             clientsRejetes++;
             annuler(e, "client " + id);
         }
     }
 
+    /** Plus de lot a envoyer : chaque ligne est deja confirmee. */
     public void terminerLotPersonnes() {
-        if (connexion == null || lotPersonnes == 0) {
-            return;
-        }
-        try {
-            psPersonne.executeBatch();
-            connexion.commit();
-            for (int i = 0; i < idsPersonneEnAttente.size(); i++) {
-                retenirPersonne(idsPersonneEnAttente.get(i), nomsPersonneEnAttente.get(i));
-            }
-            idsPersonneEnAttente.clear();
-            nomsPersonneEnAttente.clear();
-            lotPersonnes = 0;
-        } catch (SQLException e) {
-            personnesRejetees += lotPersonnes;
-            idsPersonneEnAttente.clear();
-            nomsPersonneEnAttente.clear();
-            lotPersonnes = 0;
-            viderTampon(psPersonne);
-            annuler(e, "lot de personnes");
-        }
+        confirmerReste("personnes");
     }
 
     public void terminerLotsFilms() {
-        if (connexion == null) {
-            return;
-        }
-        if (lotFilmGenre + lotFilmPays + lotInterpretations + lotScenaristes + lotAnnonces + lotCopies == 0) {
-            return;
-        }
-        try {
-            validerFilm();
-        } catch (SQLException e) {
-            oublierReferentielsDuFilm();
-            viderTamponsFilms();
-            annuler(e, "lot de films");
-        }
+        confirmerReste("films");
     }
 
     public void terminerLotClients() {
-        if (connexion == null || lotClients == 0) {
-            return;
-        }
-        try {
-            psUtilisateur.executeBatch();
-            psAdresse.executeBatch();
-            psClient.executeBatch();
-            psCarte.executeBatch();
-            connexion.commit();
-            lotClients = 0;
-        } catch (SQLException e) {
-            clientsInseres -= lotClients;
-            clientsRejetes += lotClients;
-            lotClients = 0;
-            viderTampon(psUtilisateur);
-            viderTampon(psAdresse);
-            viderTampon(psClient);
-            viderTampon(psCarte);
-            annuler(e, "lot de clients");
-        }
+        confirmerReste("clients");
     }
 
     public void afficherPersonnes() {
         System.out.println("Personnes lues : " + personnesLues
                 + ", inserees : " + personnesInserees
-                + ", rejetees (champ obligatoire absent) : " + personnesRejetees);
+                + ", rejetees (champ obligatoire absent ou erreur SQL) : " + personnesRejetees);
     }
 
     public void afficherFilms() {
         System.out.println("Films lus : " + filmsLus
                 + ", inseres : " + filmsInseres
-                + ", rejetes (champ obligatoire absent) : " + filmsRejetesChamp
+                + ", rejetes (champ obligatoire absent ou erreur SQL) : " + filmsRejetesChamp
                 + ", rejetes (realisateur non insere) : " + filmsRejetesRealisateur);
         System.out.println("Roles ignores : " + rolesIgnores
                 + ", scenaristes ignores : " + scenaristesIgnores
@@ -364,17 +294,7 @@ public class EcritureBD {
         }
     }
 
-    private void remplirPersonne(int id, String nom, Date naissance, String lieu, String photo, String bio)
-            throws SQLException {
-        psPersonne.setInt(1, id);
-        psPersonne.setString(2, nom);
-        psPersonne.setDate(3, naissance);
-        psPersonne.setString(4, lieu);
-        psPersonne.setString(5, photo);
-        GestionFlux.fixerTexte(psPersonne, 6, bio);
-    }
-
-    private void insererGenres(int idFilm, ArrayList<String> genres) throws SQLException {
+    private void insererGenres(int idFilm, ArrayList<String> genres) {
         HashSet<String> vus = new HashSet<String>();
         for (String genre : genres) {
             String nom = texte(genre);
@@ -382,18 +302,27 @@ public class EcritureBD {
                 continue;
             }
             if (genresConnus.add(nom)) {
-                psGenre.setString(1, nom);
-                psGenre.executeUpdate();
-                genresDuFilm.add(nom);
+                try {
+                    psGenre.setString(1, nom);
+                    psGenre.executeUpdate();
+                    genresDuFilm.add(nom);
+                } catch (SQLException e) {
+                    genresConnus.remove(nom);
+                    signaler(e, "genre " + nom);
+                    continue;
+                }
             }
-            psFilmGenre.setInt(1, idFilm);
-            psFilmGenre.setString(2, nom);
-            psFilmGenre.addBatch();
-            lotFilmGenre++;
+            try {
+                psFilmGenre.setInt(1, idFilm);
+                psFilmGenre.setString(2, nom);
+                psFilmGenre.executeUpdate();
+            } catch (SQLException e) {
+                signaler(e, "film " + idFilm + ", genre " + nom);
+            }
         }
     }
 
-    private void insererPays(int idFilm, ArrayList<String> pays) throws SQLException {
+    private void insererPays(int idFilm, ArrayList<String> pays) {
         HashSet<String> vus = new HashSet<String>();
         for (String paysNom : pays) {
             String nom = texte(paysNom);
@@ -401,18 +330,27 @@ public class EcritureBD {
                 continue;
             }
             if (paysConnus.add(nom)) {
-                psPays.setString(1, nom);
-                psPays.executeUpdate();
-                paysDuFilm.add(nom);
+                try {
+                    psPays.setString(1, nom);
+                    psPays.executeUpdate();
+                    paysDuFilm.add(nom);
+                } catch (SQLException e) {
+                    paysConnus.remove(nom);
+                    signaler(e, "pays " + nom);
+                    continue;
+                }
             }
-            psFilmPays.setInt(1, idFilm);
-            psFilmPays.setString(2, nom);
-            psFilmPays.addBatch();
-            lotFilmPays++;
+            try {
+                psFilmPays.setInt(1, idFilm);
+                psFilmPays.setString(2, nom);
+                psFilmPays.executeUpdate();
+            } catch (SQLException e) {
+                signaler(e, "film " + idFilm + ", pays " + nom);
+            }
         }
     }
 
-    private void insererRoles(int idFilm, ArrayList<LectureXML.Role> roles) throws SQLException {
+    private void insererRoles(int idFilm, ArrayList<LectureXML.Role> roles) {
         HashSet<String> vus = new HashSet<String>();
         for (LectureXML.Role role : roles) {
             String personnage = texte(role.personnage);
@@ -423,16 +361,20 @@ public class EcritureBD {
             if (!vus.add(role.id + "\0" + personnage)) {
                 continue;
             }
-            psInterpretation.setInt(1, idFilm);
-            psInterpretation.setInt(2, role.id);
-            psInterpretation.setString(3, personnage);
-            psInterpretation.addBatch();
-            lotInterpretations++;
+            try {
+                psInterpretation.setInt(1, idFilm);
+                psInterpretation.setInt(2, role.id);
+                psInterpretation.setString(3, personnage);
+                psInterpretation.executeUpdate();
+            } catch (SQLException e) {
+                rolesIgnores++;
+                signaler(e, "film " + idFilm + ", role " + role.id);
+            }
         }
     }
 
     /** Le XML donne le nom du scenariste, sans identifiant. */
-    private void insererScenaristes(int idFilm, ArrayList<String> scenaristes) throws SQLException {
+    private void insererScenaristes(int idFilm, ArrayList<String> scenaristes) {
         HashSet<Integer> vus = new HashSet<Integer>();
         for (String scenariste : scenaristes) {
             String nom = texte(scenariste);
@@ -441,35 +383,45 @@ public class EcritureBD {
                 scenaristesIgnores++;
                 continue;
             }
-            psScenariste.setInt(1, idFilm);
-            psScenariste.setInt(2, idPersonne);
-            psScenariste.addBatch();
-            lotScenaristes++;
+            try {
+                psScenariste.setInt(1, idFilm);
+                psScenariste.setInt(2, idPersonne);
+                psScenariste.executeUpdate();
+            } catch (SQLException e) {
+                scenaristesIgnores++;
+                signaler(e, "film " + idFilm + ", scenariste " + nom);
+            }
         }
     }
 
-    private void insererAnnonces(int idFilm, ArrayList<String> annonces) throws SQLException {
+    private void insererAnnonces(int idFilm, ArrayList<String> annonces) {
         HashSet<String> vus = new HashSet<String>();
         for (String annonce : annonces) {
             String lien = texte(annonce);
             if (lien == null || lien.length() > 300 || !vus.add(lien)) {
                 continue;
             }
-            psAnnonce.setInt(1, idFilm);
-            psAnnonce.setString(2, lien);
-            psAnnonce.addBatch();
-            lotAnnonces++;
+            try {
+                psAnnonce.setInt(1, idFilm);
+                psAnnonce.setString(2, lien);
+                psAnnonce.executeUpdate();
+            } catch (SQLException e) {
+                signaler(e, "film " + idFilm + ", annonce");
+            }
         }
     }
 
-    private void insererCopies(int idFilm) throws SQLException {
+    private void insererCopies(int idFilm) {
         int nombre = ThreadLocalRandom.current().nextInt(1, 101);
         for (int i = 1; i <= nombre; i++) {
-            psCopie.setString(1, idFilm + "-" + i);
-            psCopie.setInt(2, idFilm);
-            psCopie.addBatch();
-            lotCopies++;
-            copiesCreees++;
+            try {
+                psCopie.setString(1, idFilm + "-" + i);
+                psCopie.setInt(2, idFilm);
+                psCopie.executeUpdate();
+                copiesCreees++;
+            } catch (SQLException e) {
+                signaler(e, "copie " + idFilm + "-" + i);
+            }
         }
     }
 
@@ -551,19 +503,6 @@ public class EcritureBD {
         }
     }
 
-    private void validerFilm() throws SQLException {
-        executerSiLot(psFilmGenre, lotFilmGenre);
-        executerSiLot(psFilmPays, lotFilmPays);
-        executerSiLot(psInterpretation, lotInterpretations);
-        executerSiLot(psScenariste, lotScenaristes);
-        executerSiLot(psAnnonce, lotAnnonces);
-        executerSiLot(psCopie, lotCopies);
-        remiseAZeroLotsFilms();
-        connexion.commit();
-        genresDuFilm.clear();
-        paysDuFilm.clear();
-    }
-
     private void oublierReferentielsDuFilm() {
         genresConnus.removeAll(genresDuFilm);
         paysConnus.removeAll(paysDuFilm);
@@ -571,44 +510,23 @@ public class EcritureBD {
         paysDuFilm.clear();
     }
 
-    private void remiseAZeroLotsFilms() {
-        lotFilmGenre = 0;
-        lotFilmPays = 0;
-        lotInterpretations = 0;
-        lotScenaristes = 0;
-        lotAnnonces = 0;
-        lotCopies = 0;
-    }
-
-    private void viderTamponsFilms() {
-        viderTampon(psFilmGenre);
-        viderTampon(psFilmPays);
-        viderTampon(psInterpretation);
-        viderTampon(psScenariste);
-        viderTampon(psAnnonce);
-        viderTampon(psCopie);
-        remiseAZeroLotsFilms();
-    }
-
-    private void viderTampon(PreparedStatement statement) {
-        if (statement == null) {
+    private void confirmerReste(String contexte) {
+        if (connexion == null) {
             return;
         }
         try {
-            statement.clearBatch();
+            connexion.commit();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            annuler(e, contexte);
         }
     }
 
-    private void executerSiLot(PreparedStatement statement, int taille) throws SQLException {
-        if (taille > 0) {
-            statement.executeBatch();
-        }
+    private void signaler(SQLException e, String contexte) {
+        System.out.println(contexte + " : " + e.getMessage());
     }
 
     private void annuler(SQLException e, String contexte) {
-        System.out.println(contexte + " : " + e.getMessage());
+        signaler(e, contexte);
         if (connexion == null) {
             return;
         }
