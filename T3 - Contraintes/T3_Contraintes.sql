@@ -16,6 +16,7 @@ ALTER TABLE utilisateur ADD CONSTRAINT ck_user_courriel
     CHECK (TRIM(courriel) IS NOT NULL);
 ALTER TABLE utilisateur ADD CONSTRAINT ck_user_tel
     CHECK (TRIM(telephone) IS NOT NULL);
+    CHECK (REGEXP_LIKE(telephone, '^[0-9]*$'));
 ALTER TABLE adresse ADD CONSTRAINT ck_adr_civique
     CHECK (TRIM(numeroCivique) IS NOT NULL);
 ALTER TABLE adresse ADD CONSTRAINT ck_adr_rue
