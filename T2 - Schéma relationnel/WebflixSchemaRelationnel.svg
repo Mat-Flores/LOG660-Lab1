@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="647px" preserveAspectRatio="none" style="width:2135px;height:647px;" version="1.1" viewBox="0 0 2135 647" width="2135px" zoomAndPan="magnify"><defs><filter height="300%" id="f1fr60iok4qcmf" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="465" x="828.5" y="18.6855">Webflix — Schéma relationnel (Tâche 2, Labo 1, LOG660)</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="115.1406" style="stroke:#A80036;stroke-width:1.5;" width="232" x="264" y="349.1406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="56" x="352" y="363.5977">Utilisateur</text><line style="stroke:#A80036;stroke-width:1.5;" x1="265" x2="495" y1="368.2344" y2="368.2344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="132" x="270" y="382.6152">idUtilisateur : NUMBER (PK)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="193" x="270" y="395.1934">nomFamille : VARCHAR2(40) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="172" x="270" y="407.7715">prenom : VARCHAR2(40) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="220" x="270" y="420.3496">courriel : VARCHAR2(80) NOT NULL (UNIQUE)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="184" x="270" y="432.9277">telephone : VARCHAR2(20) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="160" x="270" y="445.5059">dateNaissance : DATE NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="194" x="270" y="458.084">motDePasse : VARCHAR2(50) NOT NULL</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="102.5625" style="stroke:#A80036;stroke-width:1.5;" width="220" x="7" y="179.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="46" x="94" y="194.0977">Adresse</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="226" y1="198.7344" y2="198.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="151" x="13" y="213.1152">idUtilisateur : NUMBER (PK, FK)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="208" x="13" y="225.6934">numeroCivique : VARCHAR2(10) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="151" x="13" y="238.2715">rue : VARCHAR2(40) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="156" x="13" y="250.8496">ville : VARCHAR2(40) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="171" x="13" y="263.4277">province : VARCHAR2(2) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="183" x="13" y="276.0059">codePostal : VARCHAR2(7) NOT NULL</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="218" x="533" y="205.1406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="32" x="626" y="219.5977">Client</text><line style="stroke:#A80036;stroke-width:1.5;" x1="534" x2="750" y1="224.2344" y2="224.2344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="151" x="539" y="238.6152">idUtilisateur : NUMBER (PK, FK)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="206" x="539" y="251.1934">codeForfait : VARCHAR2(1) NOT NULL (FK)</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="89.9844" style="stroke:#A80036;stroke-width:1.5;" width="184" x="550" y="29.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="63" x="610.5" y="44.0977">CarteCredit</text><line style="stroke:#A80036;stroke-width:1.5;" x1="551" x2="733" y1="48.7344" y2="48.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="151" x="556" y="63.1152">idUtilisateur : NUMBER (PK, FK)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="156" x="556" y="75.6934">type : VARCHAR2(10) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="172" x="556" y="88.2715">numero : VARCHAR2(19) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="160" x="556" y="100.8496">dateExpiration : DATE NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="146" x="556" y="113.4277">cvv : VARCHAR2(4) NOT NULL</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="235" x="262.5" y="205.1406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="48" x="356" y="219.5977">Employe</text><line style="stroke:#A80036;stroke-width:1.5;" x1="263.5" x2="496.5" y1="224.2344" y2="224.2344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="151" x="268.5" y="238.6152">idUtilisateur : NUMBER (PK, FK)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="223" x="268.5" y="251.1934">matricule : VARCHAR2(7) NOT NULL (UNIQUE)</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="77.4063" style="stroke:#A80036;stroke-width:1.5;" width="194" x="545" y="368.1406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="34" x="625" y="382.5977">Forfait</text><line style="stroke:#A80036;stroke-width:1.5;" x1="546" x2="738" y1="387.2344" y2="387.2344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="123" x="551" y="401.6152">code : VARCHAR2(1) (PK)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="149" x="551" y="414.1934">cout : NUMBER(5,2) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="182" x="551" y="426.7715">locationsMax : NUMBER(2) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="136" x="551" y="439.3496">dureeMaxJours : NUMBER(4)</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="127.7188" style="stroke:#A80036;stroke-width:1.5;" width="250" x="1203" y="342.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="24" x="1316" y="357.0977">Film</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1204" x2="1452" y1="361.7344" y2="361.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="106" x="1209" y="376.1152">idFilm : NUMBER (PK)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="238" x="1209" y="388.6934">idRealisateur : NUMBER NOT NULL (FK Personne)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="160" x="1209" y="401.2715">titre : VARCHAR2(120) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="177" x="1209" y="413.8496">anneeSortie : NUMBER(4) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="183" x="1209" y="426.4277">dureeMinutes : NUMBER(4) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="213" x="1209" y="439.0059">langueOriginale : VARCHAR2(30) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="182" x="1209" y="451.584">resume : VARCHAR2(1000) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="188" x="1209" y="464.1621">urlAffiche : VARCHAR2(200) NOT NULL</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="141" x="1257.5" y="205.1406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="84" x="1286" y="219.5977">BandeAnnonce</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1258.5" x2="1397.5" y1="224.2344" y2="224.2344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="125" x="1263.5" y="238.6152">idFilm : NUMBER (PK, FK)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="129" x="1263.5" y="251.1934">lien : VARCHAR2(300) (PK)</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="39.6719" style="stroke:#A80036;stroke-width:1.5;" width="138" x="1704" y="386.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="34" x="1756" y="401.0977">Genre</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1705" x2="1841" y1="405.7344" y2="405.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="126" x="1710" y="420.1152">nom : VARCHAR2(20) (PK)</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="39.6719" style="stroke:#A80036;stroke-width:1.5;" width="138" x="1950" y="386.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="27" x="2005.5" y="401.0977">Pays</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1951" x2="2087" y1="405.7344" y2="405.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="126" x="1956" y="420.1152">nom : VARCHAR2(30) (PK)</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="102.5625" style="stroke:#A80036;stroke-width:1.5;" width="220" x="1009" y="530.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="54" x="1092" y="545.0977">Personne</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1010" x2="1228" y1="549.7344" y2="549.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="129" x="1015" y="564.1152">idPersonne : NUMBER (PK)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="157" x="1015" y="576.6934">nom : VARCHAR2(60) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="160" x="1015" y="589.2715">dateNaissance : DATE NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="208" x="1015" y="601.8496">lieuNaissance : VARCHAR2(120) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="169" x="1015" y="614.4277">photo : VARCHAR2(200) NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="142" x="1015" y="627.0059">biographie : CLOB NOT NULL</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="64.8281" style="stroke:#A80036;stroke-width:1.5;" width="194" x="786" y="198.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="72" x="847" y="213.0977">Interpretation</text><line style="stroke:#A80036;stroke-width:1.5;" x1="787" x2="979" y1="217.7344" y2="217.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="125" x="792" y="232.1152">idFilm : NUMBER (PK, FK)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="148" x="792" y="244.6934">idPersonne : NUMBER (PK, FK)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="182" x="792" y="257.2715">nomPersonnage : VARCHAR2(80) (PK)</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="207" x="1015.5" y="205.1406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="83" x="1077.5" y="219.5977">FilmScenariste</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1016.5" x2="1221.5" y1="224.2344" y2="224.2344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="149" x="1021.5" y="238.6152">idFilm : NUMBER (PK, FK Film)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="195" x="1021.5" y="251.1934">idPersonne : NUMBER (PK, FK Personne)</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="218" x="1664" y="205.1406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="58" x="1744" y="219.5977">FilmGenre</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1665" x2="1881" y1="224.2344" y2="224.2344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="149" x="1670" y="238.6152">idFilm : NUMBER (PK, FK Film)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="206" x="1670" y="251.1934">nomGenre : VARCHAR2(20) (PK, FK Genre)</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="204" x="1917" y="205.1406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="51" x="1993.5" y="219.5977">FilmPays</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1918" x2="2120" y1="224.2344" y2="224.2344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="149" x="1923" y="238.6152">idFilm : NUMBER (PK, FK Film)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="192" x="1923" y="251.1934">nomPays : VARCHAR2(30) (PK, FK Pays)</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="195" x="1433.5" y="205.1406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="33" x="1514.5" y="219.5977">Copie</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1434.5" x2="1627.5" y1="224.2344" y2="224.2344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="157" x="1439.5" y="238.6152">codeCopie : VARCHAR2(20) (PK)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="183" x="1439.5" y="251.1934">idFilm : NUMBER NOT NULL (FK Film)</text><rect fill="#FEFECE" filter="url(#f1fr60iok4qcmf)" height="89.9844" style="stroke:#A80036;stroke-width:1.5;" width="253" x="1086.5" y="29.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="47" x="1189.5" y="44.0977">Location</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1087.5" x2="1338.5" y1="48.7344" y2="48.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="127" x="1092.5" y="63.1152">idLocation : NUMBER (PK)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="216" x="1092.5" y="75.6934">idUtilisateur : NUMBER NOT NULL (FK Client)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="241" x="1092.5" y="88.2715">codeCopie : VARCHAR2(20) NOT NULL (FK Copie)</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="154" x="1092.5" y="100.8496">dateLocation : DATE NOT NULL</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="89" x="1092.5" y="113.4277">dateRetour : DATE</text><!--MD5=[f1a87d22570d8134f0e7af55853e3030]
+link Adresse to Utilisateur--><path codeLine="50" d="M193.78,282.7906 C223.81,302.6006 258.49,325.4806 289.71,346.0806 " fill="none" id="Adresse-to-Utilisateur" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="293.89,348.8406,288.5676,340.5537,289.7122,346.0936,284.1724,347.2382,293.89,348.8406" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[36ff05d4f5db7d748716053918f71663]
+link Client to Utilisateur--><path codeLine="51" d="M604.18,257.1806 C569.18,280.3706 515.76,315.7406 469.85,346.1406 " fill="none" id="Client-to-Utilisateur" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="465.43,349.0606,475.1438,347.435,469.6012,346.3036,470.7326,340.7611,465.43,349.0606" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[af52034de9cbc02798b039be44d8a42e]
+link Employe to Utilisateur--><path codeLine="52" d="M380,257.3706 C380,279.9306 380,313.9406 380,343.7006 " fill="none" id="Employe-to-Utilisateur" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="380,348.8206,384,339.8206,380,343.8206,376,339.8206,380,348.8206" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[dbe09affedc06d76ae32b97e45a0eab3]
+link CarteCredit to Client--><path codeLine="53" d="M642,119.9106 C642,145.6106 642,177.3106 642,200.1006 " fill="none" id="CarteCredit-to-Client" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="642,205.1106,646,196.1106,642,200.1106,638,196.1106,642,205.1106" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[71f0993a372ce080a9ae941deee9ce47]
+link Client to Forfait--><path codeLine="54" d="M642,257.3706 C642,284.9306 642,329.5806 642,362.6806 " fill="none" id="Client-to-Forfait" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="642,367.8906,646,358.8906,642,362.8906,638,358.8906,642,367.8906" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[9bb4e4b384a98415dd6eb56076fc33a9]
+link Film to Personne--><path codeLine="111" d="M1251.95,470.7706 C1229.65,489.2806 1205.47,509.3606 1183.93,527.2406 " fill="none" id="Film-to-Personne" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1179.94,530.5506,1189.4264,527.9034,1183.7951,527.3666,1184.332,521.7353,1179.94,530.5506" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[492879b388b2d6cf74dbcbd92419408f]
+link BandeAnnonce to Film--><path codeLine="112" d="M1328,257.3706 C1328,278.3406 1328,309.1906 1328,337.3206 " fill="none" id="BandeAnnonce-to-Film" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1328,342.5406,1332,333.5406,1328,337.5406,1324,333.5406,1328,342.5406" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[8d97aa1c1186123b2d25ce9d071cd90f]
+link FilmGenre to Film--><path codeLine="113" d="M1710.39,257.1706 C1689.88,265.3306 1666.99,274.4106 1646,282.6406 C1584.23,306.8706 1515.58,333.4606 1457.92,355.7106 " fill="none" id="FilmGenre-to-Film" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1453.08,357.5706,1462.9168,358.057,1457.7438,355.7681,1460.0327,350.595,1453.08,357.5706" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[e4d9b04ce7ef5bece25274c093759779]
+link FilmGenre to Genre--><path codeLine="114" d="M1773,257.3706 C1773,290.6406 1773,348.8006 1773,381.5206 " fill="none" id="FilmGenre-to-Genre" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1773,386.5406,1777,377.5406,1773,381.5406,1769,377.5406,1773,386.5406" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[5efff418774e63133b4e9330c3e6c662]
+link FilmPays to Film--><path codeLine="115" d="M1965.91,257.2206 C1945.61,266.1306 1922.04,275.6606 1900,282.6406 C1751.38,329.6906 1575.39,364.5306 1458.25,384.8906 " fill="none" id="FilmPays-to-Film" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1453.06,385.7906,1462.6123,388.1894,1457.9861,384.9339,1461.2415,380.3077,1453.06,385.7906" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[218eabe256e14f734c6a7e35c926a605]
+link FilmPays to Pays--><path codeLine="116" d="M2019,257.3706 C2019,290.6406 2019,348.8006 2019,381.5206 " fill="none" id="FilmPays-to-Pays" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="2019,386.5406,2023,377.5406,2019,381.5406,2015,377.5406,2019,386.5406" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[bb6cb86986fb26ec25f35a6486d00cec]
+link Interpretation to Film--><path codeLine="117" d="M953.28,263.7606 C967.99,270.1606 983.45,276.7406 998,282.6406 C1063.44,309.1806 1137,336.8006 1198.03,359.1406 " fill="none" id="Interpretation-to-Film" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1202.77,360.8706,1195.6855,354.0288,1198.0727,359.1573,1192.9442,361.5445,1202.77,360.8706" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[6a3cce4a43453c9185815b117df60f00]
+link Interpretation to Personne--><path codeLine="118" d="M904.36,263.7306 C944.52,323.1206 1031.73,452.0906 1081.75,526.0506 " fill="none" id="Interpretation-to-Personne" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1084.69,530.4106,1082.9644,520.7141,1081.8902,526.268,1076.3363,525.1938,1084.69,530.4106" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[e045a920ef69576431b997717b46153e]
+link FilmScenariste to Film--><path codeLine="119" d="M1149.39,257.3706 C1175.17,278.7706 1213.36,310.4706 1247.81,339.0706 " fill="none" id="FilmScenariste-to-Film" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1251.99,342.5406,1247.598,333.7253,1248.1349,339.3566,1242.5036,339.8934,1251.99,342.5406" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[d38ea9f13b73f461b5ec3f2ac5baec28]
+link FilmScenariste to Personne--><path codeLine="120" d="M1119,257.2406 C1119,312.9506 1119,448.0806 1119,525.0406 " fill="none" id="FilmScenariste-to-Personne" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1119,530.4806,1123,521.4806,1119,525.4806,1115,521.4806,1119,530.4806" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[a1ee0d1cdfd4a59dc3ccba8907562dc2]
+link Copie to Film--><path codeLine="136" d="M1501.48,257.3706 C1476.44,278.7706 1439.35,310.4706 1405.89,339.0706 " fill="none" id="Copie-to-Film" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1401.82,342.5406,1411.2677,339.7585,1405.6293,339.302,1406.0859,333.6636,1401.82,342.5406" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[6bbecfbeac089d818b363b5c8ca251dc]
+link Location to Client--><path codeLine="137" d="M1086.47,99.8806 C996.65,118.3706 873.75,146.3006 768,179.6406 C746.88,186.3006 724.29,194.8706 704.15,203.0606 " fill="none" id="Location-to-Client" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="699.36,205.0206,709.2048,205.3033,703.9855,203.1219,706.1668,197.9026,699.36,205.0206" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[34284c09a0d29ab475a7e060f66734b3]
+link Location to Copie--><path codeLine="138" d="M1303.7,119.7106 C1358.83,146.4906 1427.49,179.8506 1474.84,202.8506 " fill="none" id="Location-to-Copie" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1479.35,205.0506,1473.002,197.5205,1474.8525,202.8661,1469.5068,204.7165,1479.35,205.0506" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[1653967d2209f7cdf4f426a434c3c1e5]
+@startuml WebflixSchemaRelationnel
+title Webflix — Schéma relationnel (Tâche 2, Labo 1, LOG660)
+
+skinparam classAttributeIconSize 0
+
+' ===================== UTILISATEURS DU SYSTÈME =====================
+object Utilisateur {
+  {field} idUtilisateur : NUMBER (PK)
+  {field} nomFamille : VARCHAR2(40) NOT NULL
+  {field} prenom : VARCHAR2(40) NOT NULL
+  {field} courriel : VARCHAR2(80) NOT NULL (UNIQUE)
+  {field} telephone : VARCHAR2(20) NOT NULL
+  {field} dateNaissance : DATE NOT NULL
+  {field} motDePasse : VARCHAR2(50) NOT NULL
+}
+
+object Adresse {
+  {field} idUtilisateur : NUMBER (PK, FK)
+  {field} numeroCivique : VARCHAR2(10) NOT NULL
+  {field} rue : VARCHAR2(40) NOT NULL
+  {field} ville : VARCHAR2(40) NOT NULL
+  {field} province : VARCHAR2(2) NOT NULL
+  {field} codePostal : VARCHAR2(7) NOT NULL
+}
+
+object Client {
+  {field} idUtilisateur : NUMBER (PK, FK)
+  {field} codeForfait : VARCHAR2(1) NOT NULL (FK)
+}
+
+object CarteCredit {
+  {field} idUtilisateur : NUMBER (PK, FK)
+  {field} type : VARCHAR2(10) NOT NULL
+  {field} numero : VARCHAR2(19) NOT NULL
+  {field} dateExpiration : DATE NOT NULL
+  {field} cvv : VARCHAR2(4) NOT NULL
+}
+
+object Employe {
+  {field} idUtilisateur : NUMBER (PK, FK)
+  {field} matricule : VARCHAR2(7) NOT NULL (UNIQUE)
+}
+
+object Forfait {
+  {field} code : VARCHAR2(1) (PK)
+  {field} cout : NUMBER(5,2) NOT NULL
+  {field} locationsMax : NUMBER(2) NOT NULL
+  {field} dureeMaxJours : NUMBER(4)
+}
+
+Adresse - -> Utilisateur
+Client - -> Utilisateur
+Employe - -> Utilisateur
+CarteCredit - -> Client
+Client - -> Forfait
+
+' ===================== CATALOGUE DE FILMS =====================
+object Film {
+  {field} idFilm : NUMBER (PK)
+  {field} idRealisateur : NUMBER NOT NULL (FK Personne)
+  {field} titre : VARCHAR2(120) NOT NULL
+  {field} anneeSortie : NUMBER(4) NOT NULL
+  {field} dureeMinutes : NUMBER(4) NOT NULL
+  {field} langueOriginale : VARCHAR2(30) NOT NULL
+  {field} resume : VARCHAR2(1000) NOT NULL
+  {field} urlAffiche : VARCHAR2(200) NOT NULL
+}
+
+object BandeAnnonce {
+  {field} idFilm : NUMBER (PK, FK)
+  {field} lien : VARCHAR2(300) (PK)
+}
+
+object Genre {
+  {field} nom : VARCHAR2(20) (PK)
+}
+
+object Pays {
+  {field} nom : VARCHAR2(30) (PK)
+}
+
+object Personne {
+  {field} idPersonne : NUMBER (PK)
+  {field} nom : VARCHAR2(60) NOT NULL
+  {field} dateNaissance : DATE NOT NULL
+  {field} lieuNaissance : VARCHAR2(120) NOT NULL
+  {field} photo : VARCHAR2(200) NOT NULL
+  {field} biographie : CLOB NOT NULL
+}
+
+object Interpretation {
+  {field} idFilm : NUMBER (PK, FK)
+  {field} idPersonne : NUMBER (PK, FK)
+  {field} nomPersonnage : VARCHAR2(80) (PK)
+}
+
+object FilmScenariste {
+  {field} idFilm : NUMBER (PK, FK Film)
+  {field} idPersonne : NUMBER (PK, FK Personne)
+}
+
+object FilmGenre {
+  {field} idFilm : NUMBER (PK, FK Film)
+  {field} nomGenre : VARCHAR2(20) (PK, FK Genre)
+}
+
+object FilmPays {
+  {field} idFilm : NUMBER (PK, FK Film)
+  {field} nomPays : VARCHAR2(30) (PK, FK Pays)
+}
+
+Film - -> Personne
+BandeAnnonce - -> Film
+FilmGenre - -> Film
+FilmGenre - -> Genre
+FilmPays - -> Film
+FilmPays - -> Pays
+Interpretation - -> Film
+Interpretation - -> Personne
+FilmScenariste - -> Film
+FilmScenariste - -> Personne
+
+' ===================== INVENTAIRE ET LOCATIONS =====================
+object Copie {
+  {field} codeCopie : VARCHAR2(20) (PK)
+  {field} idFilm : NUMBER NOT NULL (FK Film)
+}
+
+object Location {
+  {field} idLocation : NUMBER (PK)
+  {field} idUtilisateur : NUMBER NOT NULL (FK Client)
+  {field} codeCopie : VARCHAR2(20) NOT NULL (FK Copie)
+  {field} dateLocation : DATE NOT NULL
+  {field} dateRetour : DATE
+}
+
+Copie - -> Film
+Location - -> Client
+Location - -> Copie
+
+@enduml
+
+@startuml WebflixSchemaRelationnel
+title Webflix — Schéma relationnel (Tâche 2, Labo 1, LOG660)
+
+skinparam classAttributeIconSize 0
+
+object Utilisateur {
+  {field} idUtilisateur : NUMBER (PK)
+  {field} nomFamille : VARCHAR2(40) NOT NULL
+  {field} prenom : VARCHAR2(40) NOT NULL
+  {field} courriel : VARCHAR2(80) NOT NULL (UNIQUE)
+  {field} telephone : VARCHAR2(20) NOT NULL
+  {field} dateNaissance : DATE NOT NULL
+  {field} motDePasse : VARCHAR2(50) NOT NULL
+}
+
+object Adresse {
+  {field} idUtilisateur : NUMBER (PK, FK)
+  {field} numeroCivique : VARCHAR2(10) NOT NULL
+  {field} rue : VARCHAR2(40) NOT NULL
+  {field} ville : VARCHAR2(40) NOT NULL
+  {field} province : VARCHAR2(2) NOT NULL
+  {field} codePostal : VARCHAR2(7) NOT NULL
+}
+
+object Client {
+  {field} idUtilisateur : NUMBER (PK, FK)
+  {field} codeForfait : VARCHAR2(1) NOT NULL (FK)
+}
+
+object CarteCredit {
+  {field} idUtilisateur : NUMBER (PK, FK)
+  {field} type : VARCHAR2(10) NOT NULL
+  {field} numero : VARCHAR2(19) NOT NULL
+  {field} dateExpiration : DATE NOT NULL
+  {field} cvv : VARCHAR2(4) NOT NULL
+}
+
+object Employe {
+  {field} idUtilisateur : NUMBER (PK, FK)
+  {field} matricule : VARCHAR2(7) NOT NULL (UNIQUE)
+}
+
+object Forfait {
+  {field} code : VARCHAR2(1) (PK)
+  {field} cout : NUMBER(5,2) NOT NULL
+  {field} locationsMax : NUMBER(2) NOT NULL
+  {field} dureeMaxJours : NUMBER(4)
+}
+
+Adresse - -> Utilisateur
+Client - -> Utilisateur
+Employe - -> Utilisateur
+CarteCredit - -> Client
+Client - -> Forfait
+
+object Film {
+  {field} idFilm : NUMBER (PK)
+  {field} idRealisateur : NUMBER NOT NULL (FK Personne)
+  {field} titre : VARCHAR2(120) NOT NULL
+  {field} anneeSortie : NUMBER(4) NOT NULL
+  {field} dureeMinutes : NUMBER(4) NOT NULL
+  {field} langueOriginale : VARCHAR2(30) NOT NULL
+  {field} resume : VARCHAR2(1000) NOT NULL
+  {field} urlAffiche : VARCHAR2(200) NOT NULL
+}
+
+object BandeAnnonce {
+  {field} idFilm : NUMBER (PK, FK)
+  {field} lien : VARCHAR2(300) (PK)
+}
+
+object Genre {
+  {field} nom : VARCHAR2(20) (PK)
+}
+
+object Pays {
+  {field} nom : VARCHAR2(30) (PK)
+}
+
+object Personne {
+  {field} idPersonne : NUMBER (PK)
+  {field} nom : VARCHAR2(60) NOT NULL
+  {field} dateNaissance : DATE NOT NULL
+  {field} lieuNaissance : VARCHAR2(120) NOT NULL
+  {field} photo : VARCHAR2(200) NOT NULL
+  {field} biographie : CLOB NOT NULL
+}
+
+object Interpretation {
+  {field} idFilm : NUMBER (PK, FK)
+  {field} idPersonne : NUMBER (PK, FK)
+  {field} nomPersonnage : VARCHAR2(80) (PK)
+}
+
+object FilmScenariste {
+  {field} idFilm : NUMBER (PK, FK Film)
+  {field} idPersonne : NUMBER (PK, FK Personne)
+}
+
+object FilmGenre {
+  {field} idFilm : NUMBER (PK, FK Film)
+  {field} nomGenre : VARCHAR2(20) (PK, FK Genre)
+}
+
+object FilmPays {
+  {field} idFilm : NUMBER (PK, FK Film)
+  {field} nomPays : VARCHAR2(30) (PK, FK Pays)
+}
+
+Film - -> Personne
+BandeAnnonce - -> Film
+FilmGenre - -> Film
+FilmGenre - -> Genre
+FilmPays - -> Film
+FilmPays - -> Pays
+Interpretation - -> Film
+Interpretation - -> Personne
+FilmScenariste - -> Film
+FilmScenariste - -> Personne
+
+object Copie {
+  {field} codeCopie : VARCHAR2(20) (PK)
+  {field} idFilm : NUMBER NOT NULL (FK Film)
+}
+
+object Location {
+  {field} idLocation : NUMBER (PK)
+  {field} idUtilisateur : NUMBER NOT NULL (FK Client)
+  {field} codeCopie : VARCHAR2(20) NOT NULL (FK Copie)
+  {field} dateLocation : DATE NOT NULL
+  {field} dateRetour : DATE
+}
+
+Copie - -> Film
+Location - -> Client
+Location - -> Copie
+
+@enduml
+
+PlantUML version 1.2021.00(Sun Jan 10 05:25:05 EST 2021)
+(MIT source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: fr
+Country: FR
+--></g></svg>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="540px" preserveAspectRatio="none" style="width:1400px;height:540px;" version="1.1" viewBox="0 0 1400 540" width="1400px" zoomAndPan="magnify"><defs><filter height="300%" id="f14iqy121fnnlk" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="469" x="459" y="18.6855">Webflix — Schéma conceptuel (Tâche 1, Labo 1, LOG660)</text><!--MD5=[354e8650cefe639d77b0834953981666]
+class Utilisateur--><rect codeLine="7" fill="#FEFECE" filter="url(#f14iqy121fnnlk)" height="123.0156" id="Utilisateur" style="stroke:#A80036;stroke-width:1.5;" width="130" x="304.5" y="36.6406"/><ellipse cx="338.85" cy="52.6406" fill="#A9DCDF" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M341.0375,54.4063 L336.8969,54.4063 L336.475,55.4375 L336.8969,55.4375 Q337.5063,55.4375 337.7719,55.6719 Q338.0375,55.9063 338.0375,56.2969 Q338.0375,56.6719 337.7719,56.9063 Q337.5063,57.1406 336.8969,57.1406 L334.6,57.1406 Q333.9906,57.1406 333.7406,56.9063 Q333.475,56.6719 333.475,56.2813 Q333.475,55.9063 333.7563,55.6719 Q334.0219,55.4219 334.6469,55.4375 L337.3188,48.7813 L336.2094,48.7813 Q335.6,48.7813 335.3344,48.5469 Q335.0688,48.3125 335.0688,47.9219 Q335.0688,47.5469 335.3344,47.3125 Q335.6,47.0781 336.2094,47.0781 L339.8813,47.0781 L343.2719,55.4375 Q343.8656,55.4375 344.0531,55.5781 Q344.4438,55.8438 344.4438,56.2969 Q344.4438,56.6719 344.1781,56.9063 Q343.9281,57.1406 343.3188,57.1406 L341.0219,57.1406 Q340.4125,57.1406 340.1469,56.9063 Q339.8813,56.6719 339.8813,56.2813 Q339.8813,55.9063 340.1469,55.6719 Q340.4125,55.4375 341.0219,55.4375 L341.4438,55.4375 L341.0375,54.4063 Z M340.3188,52.7031 L338.9594,49.3281 L337.5844,52.7031 L340.3188,52.7031 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="55" x="357.15" y="57.5508">Utilisateur</text><line style="stroke:#A80036;stroke-width:1.5;" x1="305.5" x2="433.5" y1="68.6406" y2="68.6406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="310.5" y="84.0596">nomFamille : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="88" x="310.5" y="97.8955">prenom : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="88" x="310.5" y="111.7314">courriel : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="99" x="310.5" y="125.5674">telephone : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="118" x="310.5" y="139.4033">dateNaissance : Date [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="112" x="310.5" y="153.2393">motDePasse : String [1]</text><!--MD5=[70c811998a0d7544d2536fae1accd5d3]
+class Adresse--><rect codeLine="17" fill="#FEFECE" filter="url(#f14iqy121fnnlk)" height="109.1797" id="Adresse" style="stroke:#A80036;stroke-width:1.5;" width="135" x="409" y="244.6406"/><ellipse cx="449.65" cy="260.6406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M452.4156,256.5156 Q452.5719,256.2969 452.7594,256.1875 Q452.9469,256.0781 453.1656,256.0781 Q453.5406,256.0781 453.775,256.3438 Q454.0094,256.5938 454.0094,257.2031 L454.0094,258.6563 Q454.0094,259.2656 453.775,259.5313 Q453.5406,259.7969 453.1656,259.7969 Q452.8219,259.7969 452.6188,259.5938 Q452.4156,259.4063 452.3063,258.8906 Q452.2594,258.5313 452.0719,258.3438 Q451.7438,257.9688 451.1344,257.75 Q450.525,257.5313 449.9,257.5313 Q449.1344,257.5313 448.4938,257.8594 Q447.8688,258.1875 447.3688,258.9375 Q446.8844,259.6875 446.8844,260.7188 L446.8844,261.8125 Q446.8844,263.0469 447.775,263.875 Q448.6656,264.6875 450.2594,264.6875 Q451.1969,264.6875 451.8531,264.4375 Q452.2438,264.2813 452.6656,263.8438 Q452.9313,263.5781 453.0719,263.5 Q453.2281,263.4219 453.4313,263.4219 Q453.7594,263.4219 454.0094,263.6875 Q454.275,263.9375 454.275,264.2813 Q454.275,264.625 453.9313,265.0313 Q453.4313,265.6094 452.6344,265.9375 Q451.5563,266.3906 450.2594,266.3906 Q448.7438,266.3906 447.5406,265.7656 Q446.5563,265.2656 445.8688,264.2031 Q445.1813,263.125 445.1813,261.8438 L445.1813,260.6875 Q445.1813,259.3594 445.7906,258.2188 Q446.4156,257.0625 447.5094,256.4531 Q448.6031,255.8281 449.8375,255.8281 Q450.5719,255.8281 451.2125,256 Q451.8688,256.1563 452.4156,256.5156 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="46" x="469.35" y="265.5508">Adresse</text><line style="stroke:#A80036;stroke-width:1.5;" x1="410" x2="543" y1="276.6406" y2="276.6406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="123" x="415" y="292.0596">numeroCivique : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="68" x="415" y="305.8955">rue : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="70" x="415" y="319.7314">ville : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="94" x="415" y="333.5674">province : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="105" x="415" y="347.4033">codePostal : String [1]</text><!--MD5=[ed6624c6556d5e7b1bd23032162d20b7]
+class Client--><rect codeLine="32" fill="#FEFECE" filter="url(#f14iqy121fnnlk)" height="40" id="Client" style="stroke:#A80036;stroke-width:1.5;" width="64" x="579.5" y="279.1406"/><ellipse cx="594.5" cy="295.1406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M597.2656,291.0156 Q597.4219,290.7969 597.6094,290.6875 Q597.7969,290.5781 598.0156,290.5781 Q598.3906,290.5781 598.625,290.8438 Q598.8594,291.0938 598.8594,291.7031 L598.8594,293.1563 Q598.8594,293.7656 598.625,294.0313 Q598.3906,294.2969 598.0156,294.2969 Q597.6719,294.2969 597.4688,294.0938 Q597.2656,293.9063 597.1563,293.3906 Q597.1094,293.0313 596.9219,292.8438 Q596.5938,292.4688 595.9844,292.25 Q595.375,292.0313 594.75,292.0313 Q593.9844,292.0313 593.3438,292.3594 Q592.7188,292.6875 592.2188,293.4375 Q591.7344,294.1875 591.7344,295.2188 L591.7344,296.3125 Q591.7344,297.5469 592.625,298.375 Q593.5156,299.1875 595.1094,299.1875 Q596.0469,299.1875 596.7031,298.9375 Q597.0938,298.7813 597.5156,298.3438 Q597.7813,298.0781 597.9219,298 Q598.0781,297.9219 598.2813,297.9219 Q598.6094,297.9219 598.8594,298.1875 Q599.125,298.4375 599.125,298.7813 Q599.125,299.125 598.7813,299.5313 Q598.2813,300.1094 597.4844,300.4375 Q596.4063,300.8906 595.1094,300.8906 Q593.5938,300.8906 592.3906,300.2656 Q591.4063,299.7656 590.7188,298.7031 Q590.0313,297.625 590.0313,296.3438 L590.0313,295.1875 Q590.0313,293.8594 590.6406,292.7188 Q591.2656,291.5625 592.3594,290.9531 Q593.4531,290.3281 594.6875,290.3281 Q595.4219,290.3281 596.0625,290.5 Q596.7188,290.6563 597.2656,291.0156 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="32" x="608.5" y="300.0508">Client</text><line style="stroke:#A80036;stroke-width:1.5;" x1="580.5" x2="642.5" y1="311.1406" y2="311.1406"/><!--MD5=[9a2897d96cfcc917fe91044b2ccff0ad]
+class Employe--><rect codeLine="42" fill="#FEFECE" filter="url(#f14iqy121fnnlk)" height="53.8359" id="Employe" style="stroke:#A80036;stroke-width:1.5;" width="107" x="7" y="272.1406"/><ellipse cx="34.15" cy="288.1406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M36.9156,284.0156 Q37.0719,283.7969 37.2594,283.6875 Q37.4469,283.5781 37.6656,283.5781 Q38.0406,283.5781 38.275,283.8438 Q38.5094,284.0938 38.5094,284.7031 L38.5094,286.1563 Q38.5094,286.7656 38.275,287.0313 Q38.0406,287.2969 37.6656,287.2969 Q37.3219,287.2969 37.1188,287.0938 Q36.9156,286.9063 36.8063,286.3906 Q36.7594,286.0313 36.5719,285.8438 Q36.2438,285.4688 35.6344,285.25 Q35.025,285.0313 34.4,285.0313 Q33.6344,285.0313 32.9938,285.3594 Q32.3688,285.6875 31.8688,286.4375 Q31.3844,287.1875 31.3844,288.2188 L31.3844,289.3125 Q31.3844,290.5469 32.275,291.375 Q33.1656,292.1875 34.7594,292.1875 Q35.6969,292.1875 36.3531,291.9375 Q36.7438,291.7813 37.1656,291.3438 Q37.4313,291.0781 37.5719,291 Q37.7281,290.9219 37.9313,290.9219 Q38.2594,290.9219 38.5094,291.1875 Q38.775,291.4375 38.775,291.7813 Q38.775,292.125 38.4313,292.5313 Q37.9313,293.1094 37.1344,293.4375 Q36.0563,293.8906 34.7594,293.8906 Q33.2438,293.8906 32.0406,293.2656 Q31.0563,292.7656 30.3688,291.7031 Q29.6813,290.625 29.6813,289.3438 L29.6813,288.1875 Q29.6813,286.8594 30.2906,285.7188 Q30.9156,284.5625 32.0094,283.9531 Q33.1031,283.3281 34.3375,283.3281 Q35.0719,283.3281 35.7125,283.5 Q36.3688,283.6563 36.9156,284.0156 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="48" x="50.85" y="293.0508">Employe</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="113" y1="304.1406" y2="304.1406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="95" x="13" y="319.5596">matricule : String [1]</text><path d="M149,286.1406 L149,312.4922 A0,0 0 0 0 149,312.4922 L374,312.4922 A0,0 0 0 0 374,312.4922 L374,296.1406 L364,286.1406 L272.15,286.1406 L336.66,159.6606 L264.15,286.1406 L149,286.1406 A0,0 0 0 0 149,286.1406 " fill="#FBFB77" filter="url(#f14iqy121fnnlk)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M364,286.1406 L364,296.1406 L374,296.1406 L364,286.1406 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="204" x="155" y="304.6357">Generalisation {disjointe, complete}</text><!--MD5=[911fc20b5d1e1e5281fe7fea600db5f5]
+class CarteCredit--><rect codeLine="35" fill="#FEFECE" filter="url(#f14iqy121fnnlk)" height="95.3438" id="CarteCredit" style="stroke:#A80036;stroke-width:1.5;" width="126" x="372.5" y="431.6406"/><ellipse cx="401.45" cy="447.6406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M404.2156,443.5156 Q404.3719,443.2969 404.5594,443.1875 Q404.7469,443.0781 404.9656,443.0781 Q405.3406,443.0781 405.575,443.3438 Q405.8094,443.5938 405.8094,444.2031 L405.8094,445.6563 Q405.8094,446.2656 405.575,446.5313 Q405.3406,446.7969 404.9656,446.7969 Q404.6219,446.7969 404.4188,446.5938 Q404.2156,446.4063 404.1063,445.8906 Q404.0594,445.5313 403.8719,445.3438 Q403.5438,444.9688 402.9344,444.75 Q402.325,444.5313 401.7,444.5313 Q400.9344,444.5313 400.2938,444.8594 Q399.6688,445.1875 399.1688,445.9375 Q398.6844,446.6875 398.6844,447.7188 L398.6844,448.8125 Q398.6844,450.0469 399.575,450.875 Q400.4656,451.6875 402.0594,451.6875 Q402.9969,451.6875 403.6531,451.4375 Q404.0438,451.2813 404.4656,450.8438 Q404.7313,450.5781 404.8719,450.5 Q405.0281,450.4219 405.2313,450.4219 Q405.5594,450.4219 405.8094,450.6875 Q406.075,450.9375 406.075,451.2813 Q406.075,451.625 405.7313,452.0313 Q405.2313,452.6094 404.4344,452.9375 Q403.3563,453.3906 402.0594,453.3906 Q400.5438,453.3906 399.3406,452.7656 Q398.3563,452.2656 397.6688,451.2031 Q396.9813,450.125 396.9813,448.8438 L396.9813,447.6875 Q396.9813,446.3594 397.5906,445.2188 Q398.2156,444.0625 399.3094,443.4531 Q400.4031,442.8281 401.6375,442.8281 Q402.3719,442.8281 403.0125,443 Q403.6688,443.1563 404.2156,443.5156 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="63" x="418.55" y="452.5508">CarteCredit</text><line style="stroke:#A80036;stroke-width:1.5;" x1="373.5" x2="497.5" y1="463.6406" y2="463.6406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="378.5" y="479.0596">type : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="88" x="378.5" y="492.8955">numero : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="114" x="378.5" y="506.7314">dateExpiration : Date [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="70" x="378.5" y="520.5674">cvv : String [1]</text><!--MD5=[8861d32c553c9f9b07805436d8f1cda0]
+class Forfait--><rect codeLine="47" fill="#FEFECE" filter="url(#f14iqy121fnnlk)" height="95.3438" id="Forfait" style="stroke:#A80036;stroke-width:1.5;" width="156" x="533.5" y="431.6406"/><ellipse cx="590.25" cy="447.6406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M593.0156,443.5156 Q593.1719,443.2969 593.3594,443.1875 Q593.5469,443.0781 593.7656,443.0781 Q594.1406,443.0781 594.375,443.3438 Q594.6094,443.5938 594.6094,444.2031 L594.6094,445.6563 Q594.6094,446.2656 594.375,446.5313 Q594.1406,446.7969 593.7656,446.7969 Q593.4219,446.7969 593.2188,446.5938 Q593.0156,446.4063 592.9063,445.8906 Q592.8594,445.5313 592.6719,445.3438 Q592.3438,444.9688 591.7344,444.75 Q591.125,444.5313 590.5,444.5313 Q589.7344,444.5313 589.0938,444.8594 Q588.4688,445.1875 587.9688,445.9375 Q587.4844,446.6875 587.4844,447.7188 L587.4844,448.8125 Q587.4844,450.0469 588.375,450.875 Q589.2656,451.6875 590.8594,451.6875 Q591.7969,451.6875 592.4531,451.4375 Q592.8438,451.2813 593.2656,450.8438 Q593.5313,450.5781 593.6719,450.5 Q593.8281,450.4219 594.0313,450.4219 Q594.3594,450.4219 594.6094,450.6875 Q594.875,450.9375 594.875,451.2813 Q594.875,451.625 594.5313,452.0313 Q594.0313,452.6094 593.2344,452.9375 Q592.1563,453.3906 590.8594,453.3906 Q589.3438,453.3906 588.1406,452.7656 Q587.1563,452.2656 586.4688,451.2031 Q585.7813,450.125 585.7813,448.8438 L585.7813,447.6875 Q585.7813,446.3594 586.3906,445.2188 Q587.0156,444.0625 588.1094,443.4531 Q589.2031,442.8281 590.4375,442.8281 Q591.1719,442.8281 591.8125,443 Q592.4688,443.1563 593.0156,443.5156 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="34" x="610.75" y="452.5508">Forfait</text><line style="stroke:#A80036;stroke-width:1.5;" x1="534.5" x2="688.5" y1="463.6406" y2="463.6406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="76" x="539.5" y="479.0596">code : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="82" x="539.5" y="492.8955">cout : Decimal [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="120" x="539.5" y="506.7314">locationsMax : Integer [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="144" x="539.5" y="520.5674">dureeMaxJours : Integer [0..1]</text><!--MD5=[8e95c13453fed63b2e6aa0fa1b4fbd98]
+class Film--><rect codeLine="57" fill="#FEFECE" filter="url(#f14iqy121fnnlk)" height="136.8516" id="Film" style="stroke:#A80036;stroke-width:1.5;" width="165" x="1032" y="29.6406"/><ellipse cx="1098.25" cy="45.6406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M1101.0156,41.5156 Q1101.1719,41.2969 1101.3594,41.1875 Q1101.5469,41.0781 1101.7656,41.0781 Q1102.1406,41.0781 1102.375,41.3438 Q1102.6094,41.5938 1102.6094,42.2031 L1102.6094,43.6563 Q1102.6094,44.2656 1102.375,44.5313 Q1102.1406,44.7969 1101.7656,44.7969 Q1101.4219,44.7969 1101.2188,44.5938 Q1101.0156,44.4063 1100.9063,43.8906 Q1100.8594,43.5313 1100.6719,43.3438 Q1100.3438,42.9688 1099.7344,42.75 Q1099.125,42.5313 1098.5,42.5313 Q1097.7344,42.5313 1097.0938,42.8594 Q1096.4688,43.1875 1095.9688,43.9375 Q1095.4844,44.6875 1095.4844,45.7188 L1095.4844,46.8125 Q1095.4844,48.0469 1096.375,48.875 Q1097.2656,49.6875 1098.8594,49.6875 Q1099.7969,49.6875 1100.4531,49.4375 Q1100.8438,49.2813 1101.2656,48.8438 Q1101.5313,48.5781 1101.6719,48.5 Q1101.8281,48.4219 1102.0313,48.4219 Q1102.3594,48.4219 1102.6094,48.6875 Q1102.875,48.9375 1102.875,49.2813 Q1102.875,49.625 1102.5313,50.0313 Q1102.0313,50.6094 1101.2344,50.9375 Q1100.1563,51.3906 1098.8594,51.3906 Q1097.3438,51.3906 1096.1406,50.7656 Q1095.1563,50.2656 1094.4688,49.2031 Q1093.7813,48.125 1093.7813,46.8438 L1093.7813,45.6875 Q1093.7813,44.3594 1094.3906,43.2188 Q1095.0156,42.0625 1096.1094,41.4531 Q1097.2031,40.8281 1098.4375,40.8281 Q1099.1719,40.8281 1099.8125,41 Q1100.4688,41.1563 1101.0156,41.5156 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="24" x="1118.75" y="50.5508">Film</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1033" x2="1196" y1="61.6406" y2="61.6406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="70" x="1038" y="77.0596">titre : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="115" x="1038" y="90.8955">anneeSortie : Integer [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="122" x="1038" y="104.7314">dureeMinutes : Integer [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="126" x="1038" y="118.5674">langueOriginale : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="88" x="1038" y="132.4033">resume : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="100" x="1038" y="146.2393">urlAffiche : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="153" x="1038" y="160.0752">lienBandeAnnonce : String [0..*]</text><!--MD5=[f375b3d0fae4d15774812e930c824519]
+class Genre--><rect codeLine="68" fill="#FEFECE" filter="url(#f14iqy121fnnlk)" height="53.8359" id="Genre" style="stroke:#A80036;stroke-width:1.5;" width="84" x="1016.5" y="272.1406"/><ellipse cx="1039.6" cy="288.1406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M1042.3656,284.0156 Q1042.5219,283.7969 1042.7094,283.6875 Q1042.8969,283.5781 1043.1156,283.5781 Q1043.4906,283.5781 1043.725,283.8438 Q1043.9594,284.0938 1043.9594,284.7031 L1043.9594,286.1563 Q1043.9594,286.7656 1043.725,287.0313 Q1043.4906,287.2969 1043.1156,287.2969 Q1042.7719,287.2969 1042.5688,287.0938 Q1042.3656,286.9063 1042.2563,286.3906 Q1042.2094,286.0313 1042.0219,285.8438 Q1041.6938,285.4688 1041.0844,285.25 Q1040.475,285.0313 1039.85,285.0313 Q1039.0844,285.0313 1038.4438,285.3594 Q1037.8188,285.6875 1037.3188,286.4375 Q1036.8344,287.1875 1036.8344,288.2188 L1036.8344,289.3125 Q1036.8344,290.5469 1037.725,291.375 Q1038.6156,292.1875 1040.2094,292.1875 Q1041.1469,292.1875 1041.8031,291.9375 Q1042.1938,291.7813 1042.6156,291.3438 Q1042.8813,291.0781 1043.0219,291 Q1043.1781,290.9219 1043.3813,290.9219 Q1043.7094,290.9219 1043.9594,291.1875 Q1044.225,291.4375 1044.225,291.7813 Q1044.225,292.125 1043.8813,292.5313 Q1043.3813,293.1094 1042.5844,293.4375 Q1041.5063,293.8906 1040.2094,293.8906 Q1038.6938,293.8906 1037.4906,293.2656 Q1036.5063,292.7656 1035.8188,291.7031 Q1035.1313,290.625 1035.1313,289.3438 L1035.1313,288.1875 Q1035.1313,286.8594 1035.7406,285.7188 Q1036.3656,284.5625 1037.4594,283.9531 Q1038.5531,283.3281 1039.7875,283.3281 Q1040.5219,283.3281 1041.1625,283.5 Q1041.8188,283.6563 1042.3656,284.0156 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="34" x="1055.4" y="293.0508">Genre</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1017.5" x2="1099.5" y1="304.1406" y2="304.1406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="72" x="1022.5" y="319.5596">nom : String [1]</text><!--MD5=[aa2bb12b1d34009d39b42a242f861e93]
+class Pays--><rect codeLine="73" fill="#FEFECE" filter="url(#f14iqy121fnnlk)" height="53.8359" id="Pays" style="stroke:#A80036;stroke-width:1.5;" width="84" x="1135.5" y="272.1406"/><ellipse cx="1161.75" cy="288.1406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M1164.5156,284.0156 Q1164.6719,283.7969 1164.8594,283.6875 Q1165.0469,283.5781 1165.2656,283.5781 Q1165.6406,283.5781 1165.875,283.8438 Q1166.1094,284.0938 1166.1094,284.7031 L1166.1094,286.1563 Q1166.1094,286.7656 1165.875,287.0313 Q1165.6406,287.2969 1165.2656,287.2969 Q1164.9219,287.2969 1164.7188,287.0938 Q1164.5156,286.9063 1164.4063,286.3906 Q1164.3594,286.0313 1164.1719,285.8438 Q1163.8438,285.4688 1163.2344,285.25 Q1162.625,285.0313 1162,285.0313 Q1161.2344,285.0313 1160.5938,285.3594 Q1159.9688,285.6875 1159.4688,286.4375 Q1158.9844,287.1875 1158.9844,288.2188 L1158.9844,289.3125 Q1158.9844,290.5469 1159.875,291.375 Q1160.7656,292.1875 1162.3594,292.1875 Q1163.2969,292.1875 1163.9531,291.9375 Q1164.3438,291.7813 1164.7656,291.3438 Q1165.0313,291.0781 1165.1719,291 Q1165.3281,290.9219 1165.5313,290.9219 Q1165.8594,290.9219 1166.1094,291.1875 Q1166.375,291.4375 1166.375,291.7813 Q1166.375,292.125 1166.0313,292.5313 Q1165.5313,293.1094 1164.7344,293.4375 Q1163.6563,293.8906 1162.3594,293.8906 Q1160.8438,293.8906 1159.6406,293.2656 Q1158.6563,292.7656 1157.9688,291.7031 Q1157.2813,290.625 1157.2813,289.3438 L1157.2813,288.1875 Q1157.2813,286.8594 1157.8906,285.7188 Q1158.5156,284.5625 1159.6094,283.9531 Q1160.7031,283.3281 1161.9375,283.3281 Q1162.6719,283.3281 1163.3125,283.5 Q1163.9688,283.6563 1164.5156,284.0156 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="27" x="1178.25" y="293.0508">Pays</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1136.5" x2="1218.5" y1="304.1406" y2="304.1406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="72" x="1141.5" y="319.5596">nom : String [1]</text><!--MD5=[4337fef93a4164fb5e17f09a2ace23d6]
+class Personne--><rect codeLine="79" fill="#FEFECE" filter="url(#f14iqy121fnnlk)" height="109.1797" id="Personne" style="stroke:#A80036;stroke-width:1.5;" width="131" x="1255" y="244.6406"/><ellipse cx="1290.25" cy="260.6406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M1293.0156,256.5156 Q1293.1719,256.2969 1293.3594,256.1875 Q1293.5469,256.0781 1293.7656,256.0781 Q1294.1406,256.0781 1294.375,256.3438 Q1294.6094,256.5938 1294.6094,257.2031 L1294.6094,258.6563 Q1294.6094,259.2656 1294.375,259.5313 Q1294.1406,259.7969 1293.7656,259.7969 Q1293.4219,259.7969 1293.2188,259.5938 Q1293.0156,259.4063 1292.9063,258.8906 Q1292.8594,258.5313 1292.6719,258.3438 Q1292.3438,257.9688 1291.7344,257.75 Q1291.125,257.5313 1290.5,257.5313 Q1289.7344,257.5313 1289.0938,257.8594 Q1288.4688,258.1875 1287.9688,258.9375 Q1287.4844,259.6875 1287.4844,260.7188 L1287.4844,261.8125 Q1287.4844,263.0469 1288.375,263.875 Q1289.2656,264.6875 1290.8594,264.6875 Q1291.7969,264.6875 1292.4531,264.4375 Q1292.8438,264.2813 1293.2656,263.8438 Q1293.5313,263.5781 1293.6719,263.5 Q1293.8281,263.4219 1294.0313,263.4219 Q1294.3594,263.4219 1294.6094,263.6875 Q1294.875,263.9375 1294.875,264.2813 Q1294.875,264.625 1294.5313,265.0313 Q1294.0313,265.6094 1293.2344,265.9375 Q1292.1563,266.3906 1290.8594,266.3906 Q1289.3438,266.3906 1288.1406,265.7656 Q1287.1563,265.2656 1286.4688,264.2031 Q1285.7813,263.125 1285.7813,261.8438 L1285.7813,260.6875 Q1285.7813,259.3594 1286.3906,258.2188 Q1287.0156,257.0625 1288.1094,256.4531 Q1289.2031,255.8281 1290.4375,255.8281 Q1291.1719,255.8281 1291.8125,256 Q1292.4688,256.1563 1293.0156,256.5156 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="54" x="1308.75" y="265.5508">Personne</text><line style="stroke:#A80036;stroke-width:1.5;" x1="1256" x2="1385" y1="276.6406" y2="276.6406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="72" x="1261" y="292.0596">nom : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="118" x="1261" y="305.8955">dateNaissance : Date [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="119" x="1261" y="319.7314">lieuNaissance : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="79" x="1261" y="333.5674">photo : String [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="102" x="1261" y="347.4033">biographie : String [1]</text><!--MD5=[7bff8e9d3511536c849dce068549f46a]
+class Interpretation--><rect codeLine="89" fill="#FEFECE" filter="url(#f14iqy121fnnlk)" height="53.8359" id="Interpretation" style="stroke:#A80036;stroke-width:1.5;" width="142" x="985.5" y="452.1406"/><ellipse cx="1017.6" cy="468.1406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M1020.3656,464.0156 Q1020.5219,463.7969 1020.7094,463.6875 Q1020.8969,463.5781 1021.1156,463.5781 Q1021.4906,463.5781 1021.725,463.8438 Q1021.9594,464.0938 1021.9594,464.7031 L1021.9594,466.1563 Q1021.9594,466.7656 1021.725,467.0313 Q1021.4906,467.2969 1021.1156,467.2969 Q1020.7719,467.2969 1020.5688,467.0938 Q1020.3656,466.9063 1020.2563,466.3906 Q1020.2094,466.0313 1020.0219,465.8438 Q1019.6938,465.4688 1019.0844,465.25 Q1018.475,465.0313 1017.85,465.0313 Q1017.0844,465.0313 1016.4438,465.3594 Q1015.8188,465.6875 1015.3188,466.4375 Q1014.8344,467.1875 1014.8344,468.2188 L1014.8344,469.3125 Q1014.8344,470.5469 1015.725,471.375 Q1016.6156,472.1875 1018.2094,472.1875 Q1019.1469,472.1875 1019.8031,471.9375 Q1020.1938,471.7813 1020.6156,471.3438 Q1020.8813,471.0781 1021.0219,471 Q1021.1781,470.9219 1021.3813,470.9219 Q1021.7094,470.9219 1021.9594,471.1875 Q1022.225,471.4375 1022.225,471.7813 Q1022.225,472.125 1021.8813,472.5313 Q1021.3813,473.1094 1020.5844,473.4375 Q1019.5063,473.8906 1018.2094,473.8906 Q1016.6938,473.8906 1015.4906,473.2656 Q1014.5063,472.7656 1013.8188,471.7031 Q1013.1313,470.625 1013.1313,469.3438 L1013.1313,468.1875 Q1013.1313,466.8594 1013.7406,465.7188 Q1014.3656,464.5625 1015.4594,463.9531 Q1016.5531,463.3281 1017.7875,463.3281 Q1018.5219,463.3281 1019.1625,463.5 Q1019.8188,463.6563 1020.3656,464.0156 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="72" x="1035.4" y="473.0508">Interpretation</text><line style="stroke:#A80036;stroke-width:1.5;" x1="986.5" x2="1126.5" y1="484.1406" y2="484.1406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="130" x="991.5" y="499.5596">nomPersonnage : String [1]</text><!--MD5=[cc6757071e636e3424d8f7566e3b9d0c]
+class Copie--><rect codeLine="97" fill="#FEFECE" filter="url(#f14iqy121fnnlk)" height="53.8359" id="Copie" style="stroke:#A80036;stroke-width:1.5;" width="115" x="740" y="272.1406"/><ellipse cx="777.5" cy="288.1406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M780.2656,284.0156 Q780.4219,283.7969 780.6094,283.6875 Q780.7969,283.5781 781.0156,283.5781 Q781.3906,283.5781 781.625,283.8438 Q781.8594,284.0938 781.8594,284.7031 L781.8594,286.1563 Q781.8594,286.7656 781.625,287.0313 Q781.3906,287.2969 781.0156,287.2969 Q780.6719,287.2969 780.4688,287.0938 Q780.2656,286.9063 780.1563,286.3906 Q780.1094,286.0313 779.9219,285.8438 Q779.5938,285.4688 778.9844,285.25 Q778.375,285.0313 777.75,285.0313 Q776.9844,285.0313 776.3438,285.3594 Q775.7188,285.6875 775.2188,286.4375 Q774.7344,287.1875 774.7344,288.2188 L774.7344,289.3125 Q774.7344,290.5469 775.625,291.375 Q776.5156,292.1875 778.1094,292.1875 Q779.0469,292.1875 779.7031,291.9375 Q780.0938,291.7813 780.5156,291.3438 Q780.7813,291.0781 780.9219,291 Q781.0781,290.9219 781.2813,290.9219 Q781.6094,290.9219 781.8594,291.1875 Q782.125,291.4375 782.125,291.7813 Q782.125,292.125 781.7813,292.5313 Q781.2813,293.1094 780.4844,293.4375 Q779.4063,293.8906 778.1094,293.8906 Q776.5938,293.8906 775.3906,293.2656 Q774.4063,292.7656 773.7188,291.7031 Q773.0313,290.625 773.0313,289.3438 L773.0313,288.1875 Q773.0313,286.8594 773.6406,285.7188 Q774.2656,284.5625 775.3594,283.9531 Q776.4531,283.3281 777.6875,283.3281 Q778.4219,283.3281 779.0625,283.5 Q779.7188,283.6563 780.2656,284.0156 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="33" x="796.5" y="293.0508">Copie</text><line style="stroke:#A80036;stroke-width:1.5;" x1="741" x2="854" y1="304.1406" y2="304.1406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="103" x="746" y="319.5596">codeCopie : String [1]</text><!--MD5=[4f1f3706c1a355a8488e154afcaed5df]
+class Location--><rect codeLine="103" fill="#FEFECE" filter="url(#f14iqy121fnnlk)" height="67.6719" id="Location" style="stroke:#A80036;stroke-width:1.5;" width="123" x="731" y="445.1406"/><ellipse cx="765.8" cy="461.1406" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/><path d="M768.5656,457.0156 Q768.7219,456.7969 768.9094,456.6875 Q769.0969,456.5781 769.3156,456.5781 Q769.6906,456.5781 769.925,456.8438 Q770.1594,457.0938 770.1594,457.7031 L770.1594,459.1563 Q770.1594,459.7656 769.925,460.0313 Q769.6906,460.2969 769.3156,460.2969 Q768.9719,460.2969 768.7688,460.0938 Q768.5656,459.9063 768.4563,459.3906 Q768.4094,459.0313 768.2219,458.8438 Q767.8938,458.4688 767.2844,458.25 Q766.675,458.0313 766.05,458.0313 Q765.2844,458.0313 764.6438,458.3594 Q764.0188,458.6875 763.5188,459.4375 Q763.0344,460.1875 763.0344,461.2188 L763.0344,462.3125 Q763.0344,463.5469 763.925,464.375 Q764.8156,465.1875 766.4094,465.1875 Q767.3469,465.1875 768.0031,464.9375 Q768.3938,464.7813 768.8156,464.3438 Q769.0813,464.0781 769.2219,464 Q769.3781,463.9219 769.5813,463.9219 Q769.9094,463.9219 770.1594,464.1875 Q770.425,464.4375 770.425,464.7813 Q770.425,465.125 770.0813,465.5313 Q769.5813,466.1094 768.7844,466.4375 Q767.7063,466.8906 766.4094,466.8906 Q764.8938,466.8906 763.6906,466.2656 Q762.7063,465.7656 762.0188,464.7031 Q761.3313,463.625 761.3313,462.3438 L761.3313,461.1875 Q761.3313,459.8594 761.9406,458.7188 Q762.5656,457.5625 763.6594,456.9531 Q764.7531,456.3281 765.9875,456.3281 Q766.7219,456.3281 767.3625,456.5 Q768.0188,456.6563 768.5656,457.0156 Z " fill="#000000"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="47" x="784.2" y="466.0508">Location</text><line style="stroke:#A80036;stroke-width:1.5;" x1="732" x2="853" y1="477.1406" y2="477.1406"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="108" x="737" y="492.5596">dateLocation : Date [1]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="111" x="737" y="506.3955">dateRetour : Date [0..1]</text><!--MD5=[303c43e27a3b085ee2ec67e3e9df6060]
+reverse link Utilisateur to Adresse--><path codeLine="16" d="M408.29,171.2806 C421.26,195.4106 435.48,221.8506 447.57,244.3306 " fill="none" id="Utilisateur-backto-Adresse" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="402.04,159.6606,401.3606,166.8396,407.7261,170.228,408.4055,163.0489,402.04,159.6606" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="398.3978" y="181.2134">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="436.4149" y="233.7892">1</text><!--MD5=[fc64f8390db3595e87e6013a3d7a1d5f]
+reverse link Utilisateur to Client--><path codeLine="26" d="M450.99,156.1206 C486.08,181.8606 526.91,213.4506 561.5,244.6406 C573.4,255.3706 585.69,268.5006 595.12,279.0606 " fill="none" id="Utilisateur-backto-Client" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="446.86,161.7806,434.79,144.3606,455.09,150.4506,446.86,161.7806" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[bc62caaa397d5aaf4ab9795e58b949db]
+reverse link Utilisateur to Employe--><path codeLine="27" d="M286.83,147.0006 C240.47,174.5006 181.99,210.3006 131.5,244.6406 C118.99,253.1506 105.66,262.9806 93.96,271.8806 " fill="none" id="Utilisateur-backto-Employe" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="none" points="283.5,140.8306,304.29,136.7006,290.62,152.8906,283.5,140.8306" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[ccc910cb133bb427e8c491c56f8ee4b0]
+reverse link Client to CarteCredit--><path codeLine="34" d="M584.85,329.0806 C577.36,337.1006 569.17,345.7606 561.5,353.6406 C536.09,379.7606 507.21,408.3806 483.51,431.5806 " fill="none" id="Client-backto-CarteCredit" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="593.86,319.3806,586.8453,321.052,585.69,328.1699,592.7048,326.4986,593.86,319.3806" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="581.1786" y="340.5125">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="483.0474" y="420.9159">1</text><!--MD5=[71f0993a372ce080a9ae941deee9ce47]
+link Client to Forfait--><path codeLine="46" d="M610.38,319.2206 C609.31,339.6206 607.94,372.9106 608.5,401.6406 C608.69,411.3406 609.02,421.7306 609.38,431.6306 " fill="none" id="Client-Forfait" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="57" x="609.5" y="398.1357">souscrit à</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="612.8775" y="340.6627">0..*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="601.5194" y="420.6264">1</text><!--MD5=[0a66e9cefb38498b7a49aebf6a69a477]
+link Film to Genre--><path codeLine="67" d="M1067.36,166.7806 C1062.5,176.4406 1058.32,186.5406 1055.5,196.6406 C1048.58,221.4306 1050.53,250.9606 1053.48,271.7606 " fill="none" id="Film-Genre" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="70" x="1056.5" y="211.1357">classé dans</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="1041.4674" y="188.205">0..*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="1030.0066" y="261.1337">1..*</text><!--MD5=[394f92ce529c7769b1ca1284dc5d1bf1]
+link Film to Pays--><path codeLine="72" d="M1135.92,166.7906 C1147.33,202.8506 1160.72,245.1406 1169.16,271.7906 " fill="none" id="Film-Pays" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="71" x="1150.5" y="211.1357">produit dans</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="1117.0977" y="188.2161">0..*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="1144.9189" y="261.1707">1..*</text><!--MD5=[9bb4e4b384a98415dd6eb56076fc33a9]
+link Film to Personne--><path codeLine="77" d="M1197.26,166.1306 C1208.66,176.1006 1220.04,186.4506 1230.5,196.6406 C1245.85,211.5906 1261.66,228.7406 1275.67,244.6306 " fill="none" id="Film-Personne" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="60" x="1246.5" y="211.1357">réalisé par</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="1185.2181" y="187.9645">0..*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="1262.1757" y="233.7375">1</text><!--MD5=[9bb4e4b384a98415dd6eb56076fc33a9]
+link Film to Personne--><path codeLine="78" d="M1197.02,117.6706 C1239.82,131.8106 1288.65,156.0406 1315.5,196.6406 C1324.7,210.5506 1327.78,228.0206 1328.02,244.5306 " fill="none" id="Film-Personne-1" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="47" x="1324.5" y="211.1357">écrit par</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="1204.9709" y="116.1781">0..*</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="1307.6868" y="233.6241">1..*</text><!--MD5=[908c4ccf39938548abc89aaff8f26a19]
+link Film to Interpretation--><path codeLine="87" d="M1031.79,146.8706 C997.78,171.3306 962.06,204.4806 943.5,244.6406 C923.18,288.6206 926.05,308.4506 943.5,353.6406 C959.11,394.0806 994.64,429.4906 1021.72,452.1106 " fill="none" id="Film-Interpretation" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="944.5" y="304.6357">comporte</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="1017.1119" y="148.0155">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="990.8049" y="441.13">1..*</text><!--MD5=[cbfb2e6f23512b4fd84641ac0e8dd88e]
+link Personne to Interpretation--><path codeLine="88" d="M1254.9,344.3706 C1204.66,378.2406 1137.07,423.8206 1095.16,452.0706 " fill="none" id="Personne-Interpretation" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="24" x="1196.5" y="398.1357">joue</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="1239.9103" y="346.1804">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="1082.1459" y="441.0803">0..*</text><!--MD5=[33ebd82d3d16eca8c87fa7bb5ca8d53f]
+reverse link Film to Copie--><path codeLine="96" d="M1019.81,133.4706 C980.85,149.7406 936.33,171.2106 899.5,196.6406 C868.46,218.0806 838.55,249.5406 819.24,271.7406 " fill="none" id="Film-backto-Copie" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1031.98,128.4806,1024.9099,127.0613,1020.8806,133.0417,1027.9506,134.4609,1031.98,128.4806" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="1017.05" y="128.0583">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="801.9549" y="261.1091">1..*</text><!--MD5=[3227841ad937e9c206975ea2bdb7b882]
+link Client to Location--><path codeLine="101" d="M630.87,319.1906 C661.42,349.2306 721.19,408.0106 758.86,445.0606 " fill="none" id="Client-Location" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="45" x="713.5" y="398.1357">effectue</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="637.3022" y="340.6242">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="730.2684" y="434.3381">0..*</text><!--MD5=[90872f3c0edfc2f32fc90f7b20d8e7c2]
+link Copie to Location--><path codeLine="102" d="M796.76,326.4006 C795.88,357.9306 794.39,410.8306 793.43,445.1006 " fill="none" id="Copie-Location" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="72" x="795.5" y="398.1357">fait l'objet de</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="788.8325" y="347.6653">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="20" x="771.6443" y="434.386">0..*</text><!--MD5=[b30dbab634031e0007429ab7e715e0a2]
+@startuml WebflixSchemaConceptuel
+title Webflix — Schéma conceptuel (Tâche 1, Labo 1, LOG660)
+
+skinparam classAttributeIconSize 0
+hide empty methods
+
+' ===================== UTILISATEURS DU SYSTÈME =====================
+abstract class Utilisateur {
+  nomFamille : String [1]
+  prenom : String [1]
+  courriel : String [1]
+  telephone : String [1]
+  dateNaissance : Date [1]
+  motDePasse : String [1]
+}
+
+Utilisateur "1" *- - "1" Adresse
+class Adresse {
+  numeroCivique : String [1]
+  rue : String [1]
+  ville : String [1]
+  province : String [1]
+  codePostal : String [1]
+}
+
+' Specialisation disjointe et complete : un utilisateur est soit un client, soit un employe.
+Utilisateur <|- - Client
+Utilisateur <|- - Employe
+note bottom of Utilisateur
+  Generalisation {disjointe, complete}
+end note
+
+class Client
+
+Client "1" *- - "1" CarteCredit
+class CarteCredit {
+  type : String [1]
+  numero : String [1]
+  dateExpiration : Date [1]
+  cvv : String [1]
+}
+
+class Employe {
+  matricule : String [1]
+}
+
+Client "0..*" - - "1" Forfait : souscrit à
+class Forfait {
+  code : String [1]
+  cout : Decimal [1]
+  locationsMax : Integer [1]
+  dureeMaxJours : Integer [0..1]
+}
+
+
+
+' ===================== CATALOGUE DE FILMS =====================
+class Film {
+  titre : String [1]
+  anneeSortie : Integer [1]
+  dureeMinutes : Integer [1]
+  langueOriginale : String [1]
+  resume : String [1]
+  urlAffiche : String [1]
+  lienBandeAnnonce : String [0..*]
+}
+
+Film "0..*" - - "1..*" Genre : classé dans
+class Genre {
+  nom : String [1]
+}
+
+Film "0..*" - - "1..*" Pays : produit dans
+class Pays {
+  nom : String [1]
+}
+
+Film "0..*" - - "1" Personne : réalisé par
+Film "0..*" - - "1..*" Personne : écrit par
+class Personne {
+  nom : String [1]
+  dateNaissance : Date [1]
+  lieuNaissance : String [1]
+  photo : String [1]
+  biographie : String [1]
+}
+
+Film "1" - - "1..*" Interpretation : comporte
+Personne "1" - - "0..*" Interpretation : joue
+class Interpretation {
+  nomPersonnage : String [1]
+}
+
+
+
+' ===================== INVENTAIRE ET LOCATIONS =====================
+Film "1" *- - "1..*" Copie
+class Copie {
+  codeCopie : String [1]
+}
+
+Client "1" - - "0..*" Location : effectue
+Copie "1" - - "0..*" Location : fait l'objet de
+class Location {
+  dateLocation : Date [1]
+  dateRetour : Date [0..1]
+}
+
+
+
+@enduml
+
+@startuml WebflixSchemaConceptuel
+title Webflix — Schéma conceptuel (Tâche 1, Labo 1, LOG660)
+
+skinparam classAttributeIconSize 0
+hide empty methods
+
+abstract class Utilisateur {
+  nomFamille : String [1]
+  prenom : String [1]
+  courriel : String [1]
+  telephone : String [1]
+  dateNaissance : Date [1]
+  motDePasse : String [1]
+}
+
+Utilisateur "1" *- - "1" Adresse
+class Adresse {
+  numeroCivique : String [1]
+  rue : String [1]
+  ville : String [1]
+  province : String [1]
+  codePostal : String [1]
+}
+
+Utilisateur <|- - Client
+Utilisateur <|- - Employe
+note bottom of Utilisateur
+  Generalisation {disjointe, complete}
+end note
+
+class Client
+
+Client "1" *- - "1" CarteCredit
+class CarteCredit {
+  type : String [1]
+  numero : String [1]
+  dateExpiration : Date [1]
+  cvv : String [1]
+}
+
+class Employe {
+  matricule : String [1]
+}
+
+Client "0..*" - - "1" Forfait : souscrit à
+class Forfait {
+  code : String [1]
+  cout : Decimal [1]
+  locationsMax : Integer [1]
+  dureeMaxJours : Integer [0..1]
+}
+
+
+
+class Film {
+  titre : String [1]
+  anneeSortie : Integer [1]
+  dureeMinutes : Integer [1]
+  langueOriginale : String [1]
+  resume : String [1]
+  urlAffiche : String [1]
+  lienBandeAnnonce : String [0..*]
+}
+
+Film "0..*" - - "1..*" Genre : classé dans
+class Genre {
+  nom : String [1]
+}
+
+Film "0..*" - - "1..*" Pays : produit dans
+class Pays {
+  nom : String [1]
+}
+
+Film "0..*" - - "1" Personne : réalisé par
+Film "0..*" - - "1..*" Personne : écrit par
+class Personne {
+  nom : String [1]
+  dateNaissance : Date [1]
+  lieuNaissance : String [1]
+  photo : String [1]
+  biographie : String [1]
+}
+
+Film "1" - - "1..*" Interpretation : comporte
+Personne "1" - - "0..*" Interpretation : joue
+class Interpretation {
+  nomPersonnage : String [1]
+}
+
+
+
+Film "1" *- - "1..*" Copie
+class Copie {
+  codeCopie : String [1]
+}
+
+Client "1" - - "0..*" Location : effectue
+Copie "1" - - "0..*" Location : fait l'objet de
+class Location {
+  dateLocation : Date [1]
+  dateRetour : Date [0..1]
+}
+
+
+
+@enduml
+
+PlantUML version 1.2021.00(Sun Jan 10 05:25:05 EST 2021)
+(MIT source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: fr
+Country: FR
+--></g></svg>
