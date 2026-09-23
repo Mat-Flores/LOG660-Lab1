@@ -1,154 +1,159 @@
 ' Alt + D : Visualiser le diagramme
+'
+' Transformation du schema conceptuel (T1), en 3FN.
+'   Specialisation {disjointe, complete} : Utilisateur + Client + Employe.
+'   Composition 1-1 : la PK d'Adresse et de CarteCredit est la FK.
+'   Attribut multivalue lienBandeAnnonce : table BandeAnnonce.
+'   Associations *-* : FilmGenre, FilmPays, FilmScenariste.
+'   Realisateur (multiplicite 1) : FK NOT NULL dans Film.
+'   Une copie est sortie de l'inventaire tant qu'une location a dateRetour nulle.
+'   Pas de colonne redondante pour cet etat.
+' Les NOT NULL reprennent les multiplicites [1] de T1. Les lignes XML
+' citees en tete de T1 (film sans realisateur, personne sans photo, etc.)
+' seront refusees a l'insertion.
+' biographie est un CLOB : la plus longue biographie de personnes_latin1.xml
+' fait 54277 caracteres, au-dela de la limite VARCHAR2(4000).
+' Les fleches pointent vers la table referencee par la cle etrangere.
+' (PK) cle primaire. (FK Table) cle etrangere. (UNIQUE) cle candidate.
 
 @startuml WebflixSchemaRelationnel
 title Webflix — Schéma relationnel (Tâche 2, Labo 1, LOG660)
 
 skinparam classAttributeIconSize 0
-hide empty methods
 
 ' ===================== UTILISATEURS DU SYSTÈME =====================
 object Utilisateur {
-  idUtilisateur: INTEGER (PK, UNIQUE)
-  nomFamille : VARCHAR NOT NULL
-  prenom : VARCHAR NOT NULL
-  courriel : VARCHAR NOT NULL (UNIQUE)
-  telephone : VARCHAR NOT NULL
-  dateNaissance : DATE
-  motDePasse : VARCHAR NOT NULL
+  {field} idUtilisateur : NUMBER (PK)
+  {field} nomFamille : VARCHAR2(40) NOT NULL
+  {field} prenom : VARCHAR2(40) NOT NULL
+  {field} courriel : VARCHAR2(80) NOT NULL (UNIQUE)
+  {field} telephone : VARCHAR2(20) NOT NULL
+  {field} dateNaissance : DATE NOT NULL
+  {field} motDePasse : VARCHAR2(50) NOT NULL
 }
 
 object Adresse {
-  idUtilisateur: INTEGER (PK, FK)
-  numeroCivique : VARCHAR
-  rue : VARCHAR
-  ville : VARCHAR
-  province : VARCHAR
-  codePostal : VARCHAR
+  {field} idUtilisateur : NUMBER (PK, FK)
+  {field} numeroCivique : VARCHAR2(10) NOT NULL
+  {field} rue : VARCHAR2(40) NOT NULL
+  {field} ville : VARCHAR2(40) NOT NULL
+  {field} province : VARCHAR2(2) NOT NULL
+  {field} codePostal : VARCHAR2(7) NOT NULL
 }
 
-object Client{
-  idUtilisateur: INTEGER (PK, FK)
-  code_forfait: VARCHAR (FK)
+object Client {
+  {field} idUtilisateur : NUMBER (PK, FK)
+  {field} codeForfait : VARCHAR2(1) NOT NULL (FK)
 }
 
 object CarteCredit {
-  idUtilisateur: NUMBER (PK, FK)
-  type : VARCHAR
-  numero : VARCHAR (UNIQUE)
-  dateExpiration : DATE
-  cvv : VARCHAR
+  {field} idUtilisateur : NUMBER (PK, FK)
+  {field} type : VARCHAR2(10) NOT NULL
+  {field} numero : VARCHAR2(19) NOT NULL
+  {field} dateExpiration : DATE NOT NULL
+  {field} cvv : VARCHAR2(4) NOT NULL
 }
 
 object Employe {
-  idUtilisateur: INTEGER (PK, FK)
-  matricule : VARCHAR (UNIQUE)
+  {field} idUtilisateur : NUMBER (PK, FK)
+  {field} matricule : VARCHAR2(7) NOT NULL (UNIQUE)
 }
 
 object Forfait {
-  code : VARCHAR NOT NULL (PK)
-  cout : DECIMAL NOT NULL
-  locationsMax : INTEGER NOT NULL
-  dureeMaxJours : INTEGER NOT NULL
+  {field} code : VARCHAR2(1) (PK)
+  {field} cout : NUMBER(5,2) NOT NULL
+  {field} locationsMax : NUMBER(2) NOT NULL
+  {field} dureeMaxJours : NUMBER(4)
 }
 
-Utilisateur <-- Adresse
-Client <-- CarteCredit
-Utilisateur <-- Client
-Utilisateur <-- Employe
+Adresse --> Utilisateur
+Client --> Utilisateur
+Employe --> Utilisateur
+CarteCredit --> Client
 Client --> Forfait
 
 ' ===================== CATALOGUE DE FILMS =====================
 object Film {
-  idFilm: INTEGER (PK, UNIQUE)
-  idRealisateur (FK, REFERENCES(Personne))
-  titre : VARCHAR
-  anneeSortie : INTEGER
-  dureeMinutes : INTEGER
-  langueOriginale : VARCHAR
-  resume : VARCHAR
-  urlAffiche : VARCHAR
+  {field} idFilm : NUMBER (PK)
+  {field} idRealisateur : NUMBER NOT NULL (FK Personne)
+  {field} titre : VARCHAR2(120) NOT NULL
+  {field} anneeSortie : NUMBER(4) NOT NULL
+  {field} dureeMinutes : NUMBER(4) NOT NULL
+  {field} langueOriginale : VARCHAR2(30) NOT NULL
+  {field} resume : VARCHAR2(1000) NOT NULL
+  {field} urlAffiche : VARCHAR2(200) NOT NULL
 }
 
 object BandeAnnonce {
-  idFilm: INTEGER (PK, FK)
-  Lien VARCHAR
+  {field} idFilm : NUMBER (PK, FK)
+  {field} lien : VARCHAR2(300) (PK)
 }
 
 object Genre {
-  idGenre: NUMBER (PK, UNIQUE)
-  nom : VARCHAR (UNIQUE)
+  {field} nom : VARCHAR2(20) (PK)
 }
 
 object Pays {
-  idPays: Number (PK, UNIQUE)
-  nom : VARCHAR (UNIQUE)
+  {field} nom : VARCHAR2(30) (PK)
 }
 
 object Personne {
-  idPersonne: INTEGER (PK, UNIQUE)
-  nom : VARCHAR
-  dateNaissance : DATE
-  lieuNaissance : VARCHAR
-  photo : VARCHAR
-  biographie : VARCHAR
+  {field} idPersonne : NUMBER (PK)
+  {field} nom : VARCHAR2(60) NOT NULL
+  {field} dateNaissance : DATE NOT NULL
+  {field} lieuNaissance : VARCHAR2(120) NOT NULL
+  {field} photo : VARCHAR2(200) NOT NULL
+  {field} biographie : CLOB NOT NULL
 }
 
 object Interpretation {
-  UNIQUE: idFilm, idPersonne, nomPersonnage
-  idPersonne: INTEGER (FK)
-  idFilm: INTEGER (FK)
-  idInterpretation: INTEGER (FK)
-  nomPersonnage : VARCHAR
+  {field} idFilm : NUMBER (PK, FK)
+  {field} idPersonne : NUMBER (PK, FK)
+  {field} nomPersonnage : VARCHAR2(80) (PK)
 }
 
-object Film_Scenariste {
-  PK(idFilm, idPersonne)
-  idFilm (FK)
-  idPersonne (FK)
-}
-
-object Copie {
-  codeCopie : VARCHAR
-  idFilm: INTEGER (FK, FK)
-}
-
-object Location {
-  idLocation: NUMBER (PK, UNIQUE)
-  idUtilisateur: NUMBER (FK)
-  dateLocation : DATE
-  dateRetour : DATE
-  code_copie: VARCHAR (FK)
+object FilmScenariste {
+  {field} idFilm : NUMBER (PK, FK Film)
+  {field} idPersonne : NUMBER (PK, FK Personne)
 }
 
 object FilmGenre {
-  PK: (idFilm, idGenre)
-  idFilm : NUMBER (FK)
-  idGenre : NUMBER (FK)
+  {field} idFilm : NUMBER (PK, FK Film)
+  {field} nomGenre : VARCHAR2(20) (PK, FK Genre)
 }
 
 object FilmPays {
-  PK: (idFilm, idPays)
-  idFilm : NUMBER (FK)
-  idPays : NUMBER (FK)
+  {field} idFilm : NUMBER (PK, FK Film)
+  {field} nomPays : VARCHAR2(30) (PK, FK Pays)
 }
 
-Film <-- FilmGenre
-FilmGenre --> Genre
-
-Film <-- FilmPays
-FilmPays --> Pays
-
 Film --> Personne
+BandeAnnonce --> Film
+FilmGenre --> Film
+FilmGenre --> Genre
+FilmPays --> Film
+FilmPays --> Pays
+Interpretation --> Film
+Interpretation --> Personne
+FilmScenariste --> Film
+FilmScenariste --> Personne
 
-Film <-- Interpretation
-Personne <-- Interpretation
+' ===================== INVENTAIRE ET LOCATIONS =====================
+object Copie {
+  {field} codeCopie : VARCHAR2(20) (PK)
+  {field} idFilm : NUMBER NOT NULL (FK Film)
+}
 
-Film <-- Film_Scenariste
-Personne <-- Film_Scenariste
+object Location {
+  {field} idLocation : NUMBER (PK)
+  {field} idUtilisateur : NUMBER NOT NULL (FK Client)
+  {field} codeCopie : VARCHAR2(20) NOT NULL (FK Copie)
+  {field} dateLocation : DATE NOT NULL
+  {field} dateRetour : DATE
+}
 
-Film <-- Copie
-Film <-- BandeAnnonce
-Client <-- Location
-Copie <-- Location
+Copie --> Film
+Location --> Client
+Location --> Copie
 
 @enduml
