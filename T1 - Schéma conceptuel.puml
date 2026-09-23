@@ -1,4 +1,41 @@
 ' Alt + D : Visualiser le diagramme
+'
+' Question pour le professeur
+' ---------------------------
+' Le cas 3 presente ces informations comme faisant partie de la fiche.
+' Le schema les rend donc obligatoires. Les XML fournis omettent
+' parfois la balise (elle est absente, pas vide). Faut-il garder
+' l'obligation des cas d'utilisation, quitte a rejeter ces lignes,
+' ou rendre ces elements optionnels pour accepter tout le jeu de donnees ?
+'
+' Personnes (personnes_latin1.xml) : 4549 fiches, balise <nom> toujours presente.
+'   <photo> absente : 2118. Ex. Jin Auyeung (id 1266102), Fred Rogers (id 736872).
+'   <bio> absente : 2410. Ex. Hilary Labow (id 479640), Miguel Sandoval (id 762153).
+'   <anniversaire> absent : 793. Ex. Hilary Labow (id 479640), Lewis Abernathy (id 8656).
+'   <lieu> absent : 667. Ex. Hilary Labow (id 479640), Lewis Abernathy (id 8656).
+'   Le cas 3 demande date de naissance, lieu, photo et biographie.
+'
+' Films (films_latin1.xml) : 631 fiches. Pays et genres toujours presents (au moins 1).
+'   Pas de <realisateur> : 1 film. King Kong, 1933 (id 24216).
+'     Le cas 3 demande le nom du realisateur (multiplicite 1).
+'   Pas de <scenariste> : 1 film. Brief Encounter, 1945 (id 37558).
+'     Le cas 3 demande le nom de tous les scenaristes (multiplicite 1..*).
+'   Pas de <role> : 5 films.
+'     Fahrenheit 9/11 (id 361596), Double Jeopardy (id 150377),
+'     It Happened One Night (id 25316), The Bridge on the River Kwai (id 50212),
+'     Hotaru no haka (id 95327).
+'     Le cas 3 demande les acteurs et leurs personnages (multiplicite 1..*).
+'   Pas de <langue> : 4 films.
+'     Sunrise: A Song of Two Humans (id 18455), The General (id 17925),
+'     The Kid (id 12349), City Lights (id 21749).
+'   Pas de <poster> : 2 films.
+'     (500) Days of Summer (id 1022603), Who's Afraid of Virginia Woolf? (id 61184).
+'     Le cas 3 demande la langue originale et l'affiche.
+'
+'
+' Clients (clients_latin1.xml) : 21550 fiches, tous les champs d'abonnement sont presents.
+'   Le CVV n'est dans aucun XML. Ce point est deja tranche par l'enonce (tache 4,
+'   consigne 8) : le generer ou le laisser vide. Ce n'est pas la question ci-dessus.
 
 @startuml WebflixSchemaConceptuel
 title Webflix — Schéma conceptuel (Tâche 1, Labo 1, LOG660)
@@ -25,7 +62,13 @@ class Adresse {
   codePostal : String [1]
 }
 
+' Specialisation disjointe et complete : un utilisateur est soit un client, soit un employe.
 Utilisateur <|-- Client
+Utilisateur <|-- Employe
+note bottom of Utilisateur
+  Generalisation {disjointe, complete}
+end note
+
 class Client
 
 Client "1" *-- "1" CarteCredit
@@ -36,7 +79,6 @@ class CarteCredit {
   cvv : String [1]
 }
 
-Utilisateur <|-- Employe
 class Employe {
   matricule : String [1]
 }
