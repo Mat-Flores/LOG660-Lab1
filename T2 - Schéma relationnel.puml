@@ -1,0 +1,154 @@
+' Alt + D : Visualiser le diagramme
+
+@startuml WebflixSchemaRelationnel
+title Webflix — Schéma relationnel (Tâche 2, Labo 1, LOG660)
+
+skinparam classAttributeIconSize 0
+hide empty methods
+
+' ===================== UTILISATEURS DU SYSTÈME =====================
+object Utilisateur {
+  idUtilisateur: INTEGER (PK, UNIQUE)
+  nomFamille : VARCHAR NOT NULL
+  prenom : VARCHAR NOT NULL
+  courriel : VARCHAR NOT NULL (UNIQUE)
+  telephone : VARCHAR NOT NULL
+  dateNaissance : DATE
+  motDePasse : VARCHAR NOT NULL
+}
+
+object Adresse {
+  idUtilisateur: INTEGER (PK, FK)
+  numeroCivique : VARCHAR
+  rue : VARCHAR
+  ville : VARCHAR
+  province : VARCHAR
+  codePostal : VARCHAR
+}
+
+object Client{
+  idUtilisateur: INTEGER (PK, FK)
+  code_forfait: VARCHAR (FK)
+}
+
+object CarteCredit {
+  idUtilisateur: NUMBER (PK, FK)
+  type : VARCHAR
+  numero : VARCHAR (UNIQUE)
+  dateExpiration : DATE
+  cvv : VARCHAR
+}
+
+object Employe {
+  idUtilisateur: INTEGER (PK, FK)
+  matricule : VARCHAR (UNIQUE)
+}
+
+object Forfait {
+  code : VARCHAR NOT NULL (PK)
+  cout : DECIMAL NOT NULL
+  locationsMax : INTEGER NOT NULL
+  dureeMaxJours : INTEGER NOT NULL
+}
+
+Utilisateur <-- Adresse
+Client <-- CarteCredit
+Utilisateur <-- Client
+Utilisateur <-- Employe
+Client --> Forfait
+
+' ===================== CATALOGUE DE FILMS =====================
+object Film {
+  idFilm: INTEGER (PK, UNIQUE)
+  idRealisateur (FK, REFERENCES(Personne))
+  titre : VARCHAR
+  anneeSortie : INTEGER
+  dureeMinutes : INTEGER
+  langueOriginale : VARCHAR
+  resume : VARCHAR
+  urlAffiche : VARCHAR
+}
+
+object BandeAnnonce {
+  idFilm: INTEGER (PK, FK)
+  Lien VARCHAR
+}
+
+object Genre {
+  idGenre: NUMBER (PK, UNIQUE)
+  nom : VARCHAR (UNIQUE)
+}
+
+object Pays {
+  idPays: Number (PK, UNIQUE)
+  nom : VARCHAR (UNIQUE)
+}
+
+object Personne {
+  idPersonne: INTEGER (PK, UNIQUE)
+  nom : VARCHAR
+  dateNaissance : DATE
+  lieuNaissance : VARCHAR
+  photo : VARCHAR
+  biographie : VARCHAR
+}
+
+object Interpretation {
+  UNIQUE: idFilm, idPersonne, nomPersonnage
+  idPersonne: INTEGER (FK)
+  idFilm: INTEGER (FK)
+  idInterpretation: INTEGER (FK)
+  nomPersonnage : VARCHAR
+}
+
+object Film_Scenariste {
+  PK(idFilm, idPersonne)
+  idFilm (FK)
+  idPersonne (FK)
+}
+
+object Copie {
+  codeCopie : VARCHAR
+  idFilm: INTEGER (FK, FK)
+}
+
+object Location {
+  idLocation: NUMBER (PK, UNIQUE)
+  idUtilisateur: NUMBER (FK)
+  dateLocation : DATE
+  dateRetour : DATE
+  code_copie: VARCHAR (FK)
+}
+
+object FilmGenre {
+  PK: (idFilm, idGenre)
+  idFilm : NUMBER (FK)
+  idGenre : NUMBER (FK)
+}
+
+object FilmPays {
+  PK: (idFilm, idPays)
+  idFilm : NUMBER (FK)
+  idPays : NUMBER (FK)
+}
+
+Film <-- FilmGenre
+FilmGenre --> Genre
+
+Film <-- FilmPays
+FilmPays --> Pays
+
+Film --> Personne
+
+Film <-- Interpretation
+Personne <-- Interpretation
+
+Film <-- Film_Scenariste
+Personne <-- Film_Scenariste
+
+Film <-- Copie
+Film <-- BandeAnnonce
+Client <-- Location
+Copie <-- Location
+
+@enduml

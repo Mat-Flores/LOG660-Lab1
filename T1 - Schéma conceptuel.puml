@@ -1,0 +1,108 @@
+' Alt + D : Visualiser le diagramme
+
+@startuml WebflixSchemaConceptuel
+title Webflix — Schéma conceptuel (Tâche 1, Labo 1, LOG660)
+
+skinparam classAttributeIconSize 0
+hide empty methods
+
+' ===================== UTILISATEURS DU SYSTÈME =====================
+abstract class Utilisateur {
+  nomFamille : String [1]
+  prenom : String [1]
+  courriel : String [1]
+  telephone : String [1]
+  dateNaissance : Date [1]
+  motDePasse : String [1]
+}
+
+Utilisateur "1" *-- "1" Adresse
+class Adresse {
+  numeroCivique : String [1]
+  rue : String [1]
+  ville : String [1]
+  province : String [1]
+  codePostal : String [1]
+}
+
+Utilisateur <|-- Client
+class Client
+
+Client "1" *-- "1" CarteCredit
+class CarteCredit {
+  type : String [1]
+  numero : String [1]
+  dateExpiration : Date [1]
+  cvv : String [1]
+}
+
+Utilisateur <|-- Employe
+class Employe {
+  matricule : String [1]
+}
+
+Client "0..*" -- "1" Forfait : souscrit à
+class Forfait {
+  code : String [1]
+  cout : Decimal [1]
+  locationsMax : Integer [1]
+  dureeMaxJours : Integer [0..1]
+}
+
+
+
+' ===================== CATALOGUE DE FILMS =====================
+class Film {
+  titre : String [1]
+  anneeSortie : Integer [1]
+  dureeMinutes : Integer [1]
+  langueOriginale : String [1]
+  resume : String [1]
+  urlAffiche : String [1]
+  lienBandeAnnonce : String [0..*]
+}
+
+Film "0..*" -- "1..*" Genre : classé dans
+class Genre {
+  nom : String [1]
+}
+
+Film "0..*" -- "1..*" Pays : produit dans
+class Pays {
+  nom : String [1]
+}
+
+Film "0..*" -- "1" Personne : réalisé par
+Film "0..*" -- "1..*" Personne : écrit par
+class Personne {
+  nom : String [1]
+  dateNaissance : Date [1]
+  lieuNaissance : String [1]
+  photo : String [1]
+  biographie : String [1]
+}
+
+Film "1" -- "1..*" Interpretation : comporte
+Personne "1" -- "0..*" Interpretation : joue
+class Interpretation {
+  nomPersonnage : String [1]
+}
+
+
+
+' ===================== INVENTAIRE ET LOCATIONS =====================
+Film "1" *-- "1..*" Copie
+class Copie {
+  codeCopie : String [1]
+}
+
+Client "1" -- "0..*" Location : effectue
+Copie "1" -- "0..*" Location : fait l'objet de
+class Location {
+  dateLocation : Date [1]
+  dateRetour : Date [0..1]
+}
+
+
+
+@enduml
