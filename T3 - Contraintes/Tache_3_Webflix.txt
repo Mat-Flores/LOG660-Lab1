@@ -1,0 +1,244 @@
+TÂCHE 3 — CONTRAINTES ET PROCÉDURES
+Cas d'utilisation 1 à 4 — Schéma Webflix
+
+Les instructions complètent les tables de la tâche 2. Les clés primaires,
+clés étrangères et contraintes UNIQUE déjà définies ne sont pas à recréer.
+
+1. CAS 1 — ABONNEMENT
+
+1.1 Informations obligatoires
+Compléter les NOT NULL déjà présents dans Utilisateur.
+
+ALTER TABLE Utilisateur MODIFY (dateNaissance NOT NULL);
+ALTER TABLE Client MODIFY (code_forfait NOT NULL);
+ALTER TABLE Adresse MODIFY (
+    numeroCivique NOT NULL, rue NOT NULL, ville NOT NULL,
+    province NOT NULL, codePostal NOT NULL
+);
+ALTER TABLE CarteCredit MODIFY (
+    type NOT NULL, numero NOT NULL,
+    dateExpiration NOT NULL, cvv NOT NULL
+);
+
+Pour l'import XML, nous retenons la génération des CVV manquants,
+option autorisée par l'énoncé, afin de conserver cvv NOT NULL.
+
+1.2 Valeurs non vides
+Ces CHECK refusent les champs composés uniquement d'espaces.
+
+ALTER TABLE Utilisateur ADD CONSTRAINT ck_utilisateur_textes
+CHECK (
+    TRIM(nomFamille) IS NOT NULL AND TRIM(prenom) IS NOT NULL
+    AND TRIM(courriel) IS NOT NULL AND TRIM(telephone) IS NOT NULL
+);
+ALTER TABLE Adresse ADD CONSTRAINT ck_adresse_textes
+CHECK (
+    TRIM(numeroCivique) IS NOT NULL AND TRIM(rue) IS NOT NULL
+    AND TRIM(ville) IS NOT NULL AND TRIM(province) IS NOT NULL
+    AND TRIM(codePostal) IS NOT NULL
+);
+ALTER TABLE CarteCredit ADD CONSTRAINT ck_carte_textes
+CHECK (TRIM(numero) IS NOT NULL AND TRIM(cvv) IS NOT NULL);
+
+1.3 Courriel unique et forfait valide
+Vérifier la présence des contraintes suivantes dans le script de la tâche 2 :
+
+-- Sur Utilisateur : UNIQUE (courriel)
+-- Sur Client : FOREIGN KEY (code_forfait) REFERENCES Forfait(code)
+
+1.4 Type de carte
+Seules les trois valeurs prévues dans l'énoncé sont acceptées.
+
+ALTER TABLE CarteCredit ADD CONSTRAINT ck_type_carte
+CHECK (type IN ('VISA', 'MasterCard', 'Amex'));
+
+1.5 Mot de passe
+Interprétation retenue : au moins cinq caractères, uniquement des lettres et chiffres.
+
+ALTER TABLE Utilisateur ADD CONSTRAINT ck_mot_de_passe
+CHECK (REGEXP_LIKE(motDePasse, '^[[:alnum:]]{5,}$'));
+
+1.6 Âge minimum
+Le trigger vérifie que l'utilisateur inscrit comme client a au moins 18 ans.
+
+CREATE OR REPLACE TRIGGER trg_age_client
+BEFORE INSERT OR UPDATE OF idUtilisateur ON Client
+FOR EACH ROW
+DECLARE
+    v_naissance Utilisateur.dateNaissance%TYPE;
+BEGIN
+    SELECT dateNaissance INTO v_naissance
+    FROM Utilisateur
+    WHERE idUtilisateur = :NEW.idUtilisateur;
+
+    IF v_naissance IS NULL
+       OR TRUNC(v_naissance) > ADD_MONTHS(TRUNC(SYSDATE), -216) THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Le client doit avoir au moins 18 ans.');
+    END IF;
+END;
+/
+
+La même règle s'applique lorsqu'on corrige la date de naissance d'un client.
+
+CREATE OR REPLACE TRIGGER trg_modification_naissance
+BEFORE UPDATE OF dateNaissance ON Utilisateur
+FOR EACH ROW
+DECLARE
+    v_client NUMBER;
+BEGIN
+    SELECT COUNT(*) INTO v_client
+    FROM Client WHERE idUtilisateur = :OLD.idUtilisateur;
+
+    IF v_client > 0 AND (
+        :NEW.dateNaissance IS NULL
+        OR TRUNC(:NEW.dateNaissance) > ADD_MONTHS(TRUNC(SYSDATE), -216)
+    ) THEN
+        RAISE_APPLICATION_ERROR(-20001, 'Le client doit avoir au moins 18 ans.');
+    END IF;
+END;
+/
+
+1.7 Expiration de la carte
+La carte reste valide jusqu'à la fin du mois indiqué dans dateExpiration.
+
+CREATE OR REPLACE TRIGGER trg_expiration_carte
+BEFORE INSERT OR UPDATE OF dateExpiration ON CarteCredit
+FOR EACH ROW
+BEGIN
+    IF :NEW.dateExpiration IS NULL
+       OR TRUNC(:NEW.dateExpiration, 'MM') < TRUNC(SYSDATE, 'MM') THEN
+        RAISE_APPLICATION_ERROR(-20002, 'Date d''expiration de carte invalide.');
+    END IF;
+END;
+/
+
+1.8 Caractéristiques des forfaits
+NULL représente la durée illimitée du forfait A.
+
+ALTER TABLE Forfait MODIFY (dureeMaxJours NULL);
+ALTER TABLE Forfait ADD CONSTRAINT ck_forfait_valeurs
+CHECK (
+    (code = 'D' AND cout = 5 AND locationsMax = 1
+     AND dureeMaxJours IS NOT NULL AND dureeMaxJours = 10)
+    OR
+    (code = 'I' AND cout = 10 AND locationsMax = 5
+     AND dureeMaxJours IS NOT NULL AND dureeMaxJours = 30)
+    OR
+    (code = 'A' AND cout = 15 AND locationsMax = 10
+     AND dureeMaxJours IS NULL)
+);
+
+2. CAS 2 — CONNEXION
+
+Aucune nouvelle contrainte de table : la connexion vérifie que le courriel
+et le mot de passe correspondent à un client inscrit.
+
+SELECT c.idUtilisateur
+FROM Client c
+JOIN Utilisateur u ON u.idUtilisateur = c.idUtilisateur
+WHERE u.courriel = :courriel AND u.motDePasse = :motDePasse;
+
+Si aucune ligne n'est retournée : « Courriel ou mot de passe incorrect. »
+
+3. CAS 3 — CONSULTATION DE FILMS
+
+Ce cas ne modifie pas la base : aucune nouvelle contrainte ni procédure
+de mise à jour. Un message est affiché si aucun film ne correspond à la recherche.
+
+4. CAS 4 — LOCATION
+
+4.1 Références obligatoires
+Chaque location doit référencer un client et une copie existants.
+
+ALTER TABLE Location MODIFY (
+    idUtilisateur NOT NULL, code_copie NOT NULL, dateLocation NOT NULL
+);
+
+-- Vérifier les clés étrangères de la tâche 2 :
+-- FOREIGN KEY (idUtilisateur) REFERENCES Client(idUtilisateur)
+-- FOREIGN KEY (code_copie) REFERENCES Copie(codeCopie)
+
+4.2 Disponibilité et quota
+Une copie ne peut avoir deux locations en cours ; le nombre de locations
+non retournées d'un client ne peut dépasser locationsMax.
+
+CREATE OR REPLACE TRIGGER trg_verification_locations
+AFTER INSERT OR UPDATE ON Location
+DECLARE
+    v_nombre NUMBER;
+    v_max Forfait.locationsMax%TYPE;
+BEGIN
+    FOR cp IN (
+        SELECT codeCopie FROM Copie ORDER BY codeCopie FOR UPDATE
+    ) LOOP
+        SELECT COUNT(*) INTO v_nombre
+        FROM Location
+        WHERE code_copie = cp.codeCopie AND dateRetour IS NULL;
+
+        IF v_nombre > 1 THEN
+            RAISE_APPLICATION_ERROR(-20003, 'Cette copie est deja louee.');
+        END IF;
+    END LOOP;
+
+    FOR cl IN (
+        SELECT idUtilisateur, code_forfait
+        FROM Client ORDER BY idUtilisateur FOR UPDATE
+    ) LOOP
+        SELECT locationsMax INTO v_max
+        FROM Forfait WHERE code = cl.code_forfait;
+
+        SELECT COUNT(*) INTO v_nombre
+        FROM Location
+        WHERE idUtilisateur = cl.idUtilisateur AND dateRetour IS NULL;
+
+        IF v_nombre > v_max THEN
+            RAISE_APPLICATION_ERROR(-20004, 'Quota de locations depasse.');
+        END IF;
+    END LOOP;
+END;
+/
+
+Le contrôle s'effectue après l'instruction pour pouvoir lire Location.
+Cette version simple verrouille et vérifie toutes les copies et tous les clients.
+
+4.3 Durée maximale
+La date limite est dateLocation + dureeMaxJours : 10 jours pour D,
+30 jours pour I et aucune limite pour A. Un retour tardif reste enregistrable ;
+le dépassement sert à identifier les retards prévus dans la mise en situation.
+
+5. PROCÉDURES À PRÉVOIR AU LABORATOIRE 2
+
+p_ajouterClient
+Entrées : nom, prénom, courriel, téléphone, naissance, mot de passe,
+adresse complète, informations de carte et code du forfait.
+Traitement : générer idUtilisateur et créer Utilisateur, Adresse,
+CarteCredit et Client dans une même transaction, sans inscription partielle.
+
+p_louerFilm
+Entrées : identifiant du client connecté et identifiant du film choisi.
+Traitement : attribuer une copie disponible et créer la location en générant
+idLocation en interne. Une copie est disponible si elle n'a aucune location
+dont dateRetour est NULL.
+
+Les identifiants des nouveaux enregistrements ne sont pas des paramètres d'entrée.
+Les erreurs doivent produire un message compréhensible pour le client.
+Les procédures seront implémentées et testées au laboratoire 2 seulement.
+
+6. TESTS DES CONTRAINTES
+
+Test                                             Résultat attendu
+Champ obligatoire absent                         Refus
+Nom ou adresse contenant uniquement des espaces   Refus
+Courriel déjà utilisé                            Refus
+Forfait inexistant                               Refus
+Type de carte non autorisé                       Refus
+Mot de passe Ab12 / Ab123                         Refus / acceptation
+Client de moins de 18 ans / exactement 18 ans      Refus / acceptation
+Carte expirée le mois précédent / ce mois-ci      Refus / acceptation
+Copie déjà louée                                 Refus
+Location dépassant le quota                      Refus
+Copie disponible et quota respecté               Acceptation
+
+Les tests restent à exécuter sur Oracle et leurs résultats à consigner.
+Pour la tâche 4, l'énoncé demande l'import des clients avant les triggers/checks ;
+les données importées devront être contrôlées lors de l'ajout des contraintes.
