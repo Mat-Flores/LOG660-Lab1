@@ -1,4 +1,4 @@
--- WEBFLIX - TACHE 3 : CONTRAINTES, CAS 1 A 4
+-- TACHE 3 : CONTRAINTES, CAS 1 A 4
 -- A executer une fois, apres T2 - Tables.sql et l'import prevu au labo 1.
 -- Noms repris du script fourni : Client.codeForfait, Location.codeCopie.
 -- Prerequis T2 : champs obligatoires NOT NULL, courriel UNIQUE, cles etrangeres.
@@ -309,4 +309,4 @@ EXCEPTION
 END;
 /
 
--- Script relu, non execute sur Oracle ici. Conserver les sorties des tests.
+
