@@ -1,0 +1,5 @@
+1- Tous les membres de l'équipe sont présents! L'absence de l'équipe c'est un 0 pour l'équipe, et l'absence d'un membre c'est un 0 pour lui seul (sauf si il y a une justification)
+2- Votre Oracle avec les tables vides (vous pouvez faire SOIT un drop table à mon arrivé, OU bien juste vider les tables ... puis faire un select count puis cela doit montrer 0 pour les tables clients/films/personnes)
+puis
+3- L'insertion des données dans la BD de l'école à partir de votre code JAVA (si l'insertion se fait dans une BD local, c'est un 0).
+4- On check le nombre d'insertion (clients, personnes et films) ainsi que le nombre des copies des films

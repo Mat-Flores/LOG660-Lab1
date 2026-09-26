@@ -1,0 +1,21 @@
+########################################
+Bonjour,
+
+Vous pouvez utilisez Oracle SQl developer installé sur vos postes/ordi/laptop ou téléchargeable gratuitement pour faire des requêtes sur votre belle base de donnée de votre équipe:
+
+Serveur/host : bdlog660.ens.ad.etsmtl.ca
+Nom du service principal : ORCLPDB1
+Nom du service : ORCLPDB1.ens.ad.etsmtl.ca
+Port : 1521
+Exemple de chaîne de connexion : EQUIPE100@//bdlog660.ens.ad.etsmtl.ca/ORCLPDB1
+
+User/Pass : ".........." (par courriel)
+
+Pour travailler de la maison, utilisez le VPN:  https://www.etsmtl.ca/services/sti/catalogue-de-services/reseau/etablir-connexion-vpn
+
+Bon Laboratoires!
+########################################
+
+
+
+Nom de service pour bd externe : LOG660EXT.ens.ad.etsmtl.ca
