@@ -25,9 +25,9 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class EcritureBD {
     // A adapter a l'instance Oracle du cours.
-    private static final String URL_BD = "jdbc:oracle:thin:@//localhost:1521/XEPDB1";
-    private static final String UTILISATEUR_BD = "LOG660";
-    private static final String MOT_DE_PASSE_BD = "LOG660";
+    private static final String URL_BD ="jdbc:oracle:thin:@//bdlog660.ens.ad.etsmtl.ca:1521/ORCLPDB1";
+    private static final String UTILISATEUR_BD = "EQUIPE201";
+    private static final String MOT_DE_PASSE_BD = "REP3fDVg";
 
     private Connection connexion;
 
