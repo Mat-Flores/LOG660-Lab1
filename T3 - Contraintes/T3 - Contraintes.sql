@@ -362,6 +362,10 @@ EXCEPTION
 END p_louerFilm;
 /
 
+-- ---------------------------------------------------------------------------
+-- Tests. Les donnees creees ici sont annulees.
+-- SET SERVEROUTPUT ON avant d'executer ce script pour voir le resultat.
+-- ---------------------------------------------------------------------------
 SET SERVEROUTPUT ON
 
 DECLARE
