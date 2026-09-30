@@ -15,16 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Insertions Oracle du chargement Webflix, une ligne a la fois.
- * Une erreur n'annule que la ligne en cours. Les lignes deja confirmees restent.
- * PreparedStatement evite les problemes de caracteres reserves et de dates.
- *
- * Une personne ou un film dont un champ obligatoire manque n'est pas insere.
- * Le CVV, absent des XML, est genere. Chaque film insere recoit 1 a 100 copies.
- */
 public class EcritureBD {
-    // A adapter a l'instance Oracle du cours.
     private static final String URL_BD ="jdbc:oracle:thin:@//bdlog660.ens.ad.etsmtl.ca:1521/ORCLPDB1";
     private static final String UTILISATEUR_BD = "EQUIPE201";
     private static final String MOT_DE_PASSE_BD = "REP3fDVg";
@@ -52,7 +43,6 @@ public class EcritureBD {
     private int filmsLus;
     private int filmsInseres;
     private int filmsRejetesChamp;
-    private int filmsRejetesRealisateur;
     private int rolesIgnores;
     private int scenaristesIgnores;
     private int clientsLus;
@@ -77,23 +67,26 @@ public class EcritureBD {
 
     public void insererPersonne(int id, String nom, String anniv, String lieu, String photo, String bio) {
         personnesLues++;
+
         String nomNet = texte(nom);
         String lieuNet = texte(lieu);
         String photoNet = texte(photo);
         String bioNet = texte(bio);
         Date naissance = lireDate(anniv);
-        if (nomNet == null || lieuNet == null || photoNet == null || bioNet == null || naissance == null
-                || nomNet.length() > 60 || lieuNet.length() > 120 || photoNet.length() > 200) {
-            personnesRejetees++;
-            return;
-        }
+
         try {
             psPersonne.setInt(1, id);
             psPersonne.setString(2, nomNet);
             psPersonne.setDate(3, naissance);
             psPersonne.setString(4, lieuNet);
             psPersonne.setString(5, photoNet);
-            GestionFlux.fixerTexte(psPersonne, 6, bioNet);
+
+            if (bioNet == null) {
+                psPersonne.setNull(6, java.sql.Types.CLOB);
+            } else {
+                GestionFlux.fixerTexte(psPersonne, 6, bioNet);
+            }
+
             psPersonne.executeUpdate();
             connexion.commit();
             retenirPersonne(id, nomNet);
@@ -104,30 +97,27 @@ public class EcritureBD {
     }
 
     public void insererFilm(int id, String titre, int annee,
-            ArrayList<String> pays, String langue, int duree, String resume,
-            ArrayList<String> genres, String realisateurNom, int realisateurId,
-            ArrayList<String> scenaristes,
-            ArrayList<LectureXML.Role> roles, String poster,
-            ArrayList<String> annonces) {
+                            ArrayList<String> pays, String langue, int duree, String resume,
+                            ArrayList<String> genres, String realisateurNom, int realisateurId,
+                            ArrayList<String> scenaristes,
+                            ArrayList<LectureXML.Role> roles, String poster,
+                            ArrayList<String> annonces) {
         filmsLus++;
+
         String titreNet = texte(titre);
         String langueNet = texte(langue);
         String resumeNet = texte(resume);
         String posterNet = texte(poster);
-        if (titreNet == null || langueNet == null || resumeNet == null || posterNet == null
-                || annee < 0 || duree < 0 || realisateurId < 0
-                || titreNet.length() > 120 || langueNet.length() > 30
-                || resumeNet.length() > 1000 || posterNet.length() > 200) {
-            filmsRejetesChamp++;
-            return;
-        }
-        if (!personnesInsereesIds.contains(realisateurId)) {
-            filmsRejetesRealisateur++;
-            return;
-        }
+
         try {
             psFilm.setInt(1, id);
-            psFilm.setInt(2, realisateurId);
+
+            if (realisateurId >= 0) {
+                psFilm.setInt(2, realisateurId);
+            } else {
+                psFilm.setNull(2, java.sql.Types.NUMERIC);
+            }
+
             psFilm.setString(3, titreNet);
             psFilm.setInt(4, annee);
             psFilm.setInt(5, duree);
@@ -147,6 +137,7 @@ public class EcritureBD {
         insererScenaristes(id, scenaristes);
         insererAnnonces(id, annonces);
         insererCopies(id);
+
         try {
             connexion.commit();
             filmsInseres++;
@@ -160,12 +151,13 @@ public class EcritureBD {
     }
 
     public void insererClient(int id, String nomFamille, String prenom,
-            String courriel, String tel, String anniv,
-            String adresse, String ville, String province,
-            String codePostal, String carte, String noCarte,
-            int expMois, int expAnnee, String motDePasse,
-            String forfait) {
+                              String courriel, String tel, String anniv,
+                              String adresse, String ville, String province,
+                              String codePostal, String carte, String noCarte,
+                              int expMois, int expAnnee, String motDePasse,
+                              String forfait) {
         clientsLus++;
+
         String nomNet = texte(nomFamille);
         String prenomNet = texte(prenom);
         String courrielNet = texte(courriel);
@@ -178,27 +170,14 @@ public class EcritureBD {
         String forfaitNet = texte(forfait);
         Date naissance = lireDate(anniv);
         String[] voie = separerAdresse(adresse);
-        if (nomNet == null || prenomNet == null || courrielNet == null || telNet == null
-                || villeNet == null || provinceNet == null || codePostalNet == null
-                || carteNet == null || noCarteNet == null || motDePasse == null
-                || motDePasse.trim().isEmpty() || forfaitNet == null || naissance == null
-                || voie == null || expMois < 1 || expMois > 12 || expAnnee < 1
-                || nomNet.length() > 40 || prenomNet.length() > 40 || courrielNet.length() > 80
-                || telNet.length() > 20 || villeNet.length() > 40 || provinceNet.length() > 2
-                || codePostalNet.length() > 7 || carteNet.length() > 10 || noCarteNet.length() > 19
-                || motDePasse.length() > 50 || forfaitNet.length() > 1) {
-            clientsRejetes++;
-            return;
-        }
-        Date expiration;
+
         try {
-            expiration = Date.valueOf(YearMonth.of(expAnnee, expMois).atEndOfMonth());
-        } catch (DateTimeException e) {
-            clientsRejetes++;
-            return;
-        }
-        String cvv = String.format("%03d", ThreadLocalRandom.current().nextInt(0, 1000));
-        try {
+            Date expiration =
+                    Date.valueOf(YearMonth.of(expAnnee, expMois).atEndOfMonth());
+
+            String cvv = String.format("%03d",
+                    ThreadLocalRandom.current().nextInt(0, 1000));
+
             psUtilisateur.setInt(1, id);
             psUtilisateur.setString(2, nomNet);
             psUtilisateur.setString(3, prenomNet);
@@ -207,6 +186,10 @@ public class EcritureBD {
             psUtilisateur.setDate(6, naissance);
             psUtilisateur.setString(7, motDePasse);
             psUtilisateur.executeUpdate();
+
+            if (voie == null) {
+                throw new SQLException("Adresse XML impossible a separer : " + adresse);
+            }
 
             psAdresse.setInt(1, id);
             psAdresse.setString(2, voie[0]);
@@ -232,6 +215,9 @@ public class EcritureBD {
         } catch (SQLException e) {
             clientsRejetes++;
             annuler(e, "client " + id);
+        } catch (DateTimeException e) {
+            clientsRejetes++;
+            annuler(new SQLException("Date d'expiration XML invalide", e), "client " + id);
         }
     }
 
@@ -251,14 +237,13 @@ public class EcritureBD {
     public void afficherPersonnes() {
         System.out.println("Personnes lues : " + personnesLues
                 + ", inserees : " + personnesInserees
-                + ", rejetees (champ obligatoire absent ou erreur SQL) : " + personnesRejetees);
+                + ", rejetees (erreur SQL/contrainte Oracle) : " + personnesRejetees);
     }
 
     public void afficherFilms() {
         System.out.println("Films lus : " + filmsLus
                 + ", inseres : " + filmsInseres
-                + ", rejetes (champ obligatoire absent ou erreur SQL) : " + filmsRejetesChamp
-                + ", rejetes (realisateur non insere) : " + filmsRejetesRealisateur);
+                + ", rejetes (erreur SQL/contrainte Oracle) : " + filmsRejetesChamp);
         System.out.println("Roles ignores : " + rolesIgnores
                 + ", scenaristes ignores : " + scenaristesIgnores
                 + ", copies creees : " + copiesCreees);
@@ -272,9 +257,9 @@ public class EcritureBD {
 
     public void fermer() {
         PreparedStatement[] requetes = {
-            psPersonne, psGenre, psPays, psFilm, psFilmGenre, psFilmPays,
-            psInterpretation, psScenariste, psAnnonce, psCopie,
-            psUtilisateur, psAdresse, psClient, psCarte
+                psPersonne, psGenre, psPays, psFilm, psFilmGenre, psFilmPays,
+                psInterpretation, psScenariste, psAnnonce, psCopie,
+                psUtilisateur, psAdresse, psClient, psCarte
         };
         for (PreparedStatement requete : requetes) {
             if (requete != null) {
@@ -298,7 +283,7 @@ public class EcritureBD {
         HashSet<String> vus = new HashSet<String>();
         for (String genre : genres) {
             String nom = texte(genre);
-            if (nom == null || nom.length() > 20 || !vus.add(nom)) {
+            if (!vus.add(nom)) {
                 continue;
             }
             if (genresConnus.add(nom)) {
@@ -326,7 +311,7 @@ public class EcritureBD {
         HashSet<String> vus = new HashSet<String>();
         for (String paysNom : pays) {
             String nom = texte(paysNom);
-            if (nom == null || nom.length() > 30 || !vus.add(nom)) {
+            if (!vus.add(nom)) {
                 continue;
             }
             if (paysConnus.add(nom)) {
@@ -354,10 +339,6 @@ public class EcritureBD {
         HashSet<String> vus = new HashSet<String>();
         for (LectureXML.Role role : roles) {
             String personnage = texte(role.personnage);
-            if (personnage == null || personnage.length() > 80 || !personnesInsereesIds.contains(role.id)) {
-                rolesIgnores++;
-                continue;
-            }
             if (!vus.add(role.id + "\0" + personnage)) {
                 continue;
             }
@@ -398,7 +379,7 @@ public class EcritureBD {
         HashSet<String> vus = new HashSet<String>();
         for (String annonce : annonces) {
             String lien = texte(annonce);
-            if (lien == null || lien.length() > 300 || !vus.add(lien)) {
+            if (!vus.add(lien)) {
                 continue;
             }
             try {
@@ -440,7 +421,7 @@ public class EcritureBD {
         }
         String numero = valeur.substring(0, i);
         String rue = valeur.substring(i).trim();
-        if (rue.isEmpty() || numero.length() > 10 || rue.length() > 40) {
+        if (rue.isEmpty()) {
             return null;
         }
         return new String[] { numero, rue };
