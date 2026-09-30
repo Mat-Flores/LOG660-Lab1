@@ -1,6 +1,3 @@
--- ---------------------------------------------------------------------------
--- Forfaits du cas 1. dureeMaxJours est nulle pour le forfait illimite (A).
--- ---------------------------------------------------------------------------
 CREATE TABLE forfait (
     code            VARCHAR2(1)     NOT NULL,
     cout            NUMBER(5, 2)    NOT NULL,
@@ -9,28 +6,25 @@ CREATE TABLE forfait (
     CONSTRAINT pk_forfait PRIMARY KEY (code)
 );
 
--- ---------------------------------------------------------------------------
--- Utilisateurs : parent de la specialisation disjointe et complete
--- ---------------------------------------------------------------------------
 CREATE TABLE utilisateur (
     idUtilisateur   NUMBER          NOT NULL,
-    nomFamille      VARCHAR2(40)    NOT NULL,
-    prenom          VARCHAR2(40)    NOT NULL,
-    courriel        VARCHAR2(80)    NOT NULL,
-    telephone       VARCHAR2(20)    NOT NULL,
-    dateNaissance   DATE            NOT NULL,
-    motDePasse      VARCHAR2(50)    NOT NULL,
+    nomFamille      VARCHAR2(40),
+    prenom          VARCHAR2(40),
+    courriel        VARCHAR2(80),
+    telephone       VARCHAR2(20),
+    dateNaissance   DATE,
+    motDePasse      VARCHAR2(50),
     CONSTRAINT pk_utilisateur PRIMARY KEY (idUtilisateur),
     CONSTRAINT uq_utilisateur_courriel UNIQUE (courriel)
 );
 
 CREATE TABLE adresse (
     idUtilisateur   NUMBER          NOT NULL,
-    numeroCivique   VARCHAR2(10)    NOT NULL,
-    rue             VARCHAR2(40)    NOT NULL,
-    ville           VARCHAR2(40)    NOT NULL,
-    province        VARCHAR2(2)     NOT NULL,
-    codePostal      VARCHAR2(7)     NOT NULL,
+    numeroCivique   VARCHAR2(10),
+    rue             VARCHAR2(40),
+    ville           VARCHAR2(40),
+    province        VARCHAR2(2),
+    codePostal      VARCHAR2(7),
     CONSTRAINT pk_adresse PRIMARY KEY (idUtilisateur),
     CONSTRAINT fk_adresse_utilisateur
         FOREIGN KEY (idUtilisateur) REFERENCES utilisateur (idUtilisateur)
@@ -39,7 +33,7 @@ CREATE TABLE adresse (
 
 CREATE TABLE client (
     idUtilisateur   NUMBER          NOT NULL,
-    codeForfait     VARCHAR2(1)     NOT NULL,
+    codeForfait     VARCHAR2(1),
     CONSTRAINT pk_client PRIMARY KEY (idUtilisateur),
     CONSTRAINT fk_client_utilisateur
         FOREIGN KEY (idUtilisateur) REFERENCES utilisateur (idUtilisateur)
@@ -50,10 +44,10 @@ CREATE TABLE client (
 
 CREATE TABLE carteCredit (
     idUtilisateur   NUMBER          NOT NULL,
-    type            VARCHAR2(10)    NOT NULL,
-    numero          VARCHAR2(19)    NOT NULL,
-    dateExpiration  DATE            NOT NULL,
-    cvv             VARCHAR2(4)     NOT NULL,
+    type            VARCHAR2(10),
+    numero          VARCHAR2(19),
+    dateExpiration  DATE,
+    cvv             VARCHAR2(4),
     CONSTRAINT pk_cartecredit PRIMARY KEY (idUtilisateur),
     CONSTRAINT fk_cartecredit_client
         FOREIGN KEY (idUtilisateur) REFERENCES client (idUtilisateur)
@@ -62,7 +56,7 @@ CREATE TABLE carteCredit (
 
 CREATE TABLE employe (
     idUtilisateur   NUMBER          NOT NULL,
-    matricule       VARCHAR2(7)     NOT NULL,
+    matricule       VARCHAR2(7),
     CONSTRAINT pk_employe PRIMARY KEY (idUtilisateur),
     CONSTRAINT fk_employe_utilisateur
         FOREIGN KEY (idUtilisateur) REFERENCES utilisateur (idUtilisateur)
@@ -70,28 +64,25 @@ CREATE TABLE employe (
     CONSTRAINT uq_employe_matricule UNIQUE (matricule)
 );
 
--- ---------------------------------------------------------------------------
--- Catalogue
--- ---------------------------------------------------------------------------
 CREATE TABLE personne (
     idPersonne      NUMBER          NOT NULL,
-    nom             VARCHAR2(60)    NOT NULL,
-    dateNaissance   DATE            NOT NULL,
-    lieuNaissance   VARCHAR2(120)   NOT NULL,
-    photo           VARCHAR2(200)   NOT NULL,
-    biographie      CLOB            NOT NULL,
+    nom             VARCHAR2(60),
+    dateNaissance   DATE,
+    lieuNaissance   VARCHAR2(120),
+    photo           VARCHAR2(200),
+    biographie      CLOB,
     CONSTRAINT pk_personne PRIMARY KEY (idPersonne)
 );
 
 CREATE TABLE film (
     idFilm          NUMBER          NOT NULL,
-    idRealisateur   NUMBER          NOT NULL,
-    titre           VARCHAR2(120)   NOT NULL,
-    anneeSortie     NUMBER(4)       NOT NULL,
-    dureeMinutes    NUMBER(4)       NOT NULL,
-    langueOriginale VARCHAR2(30)    NOT NULL,
-    resume          VARCHAR2(1000)  NOT NULL,
-    urlAffiche      VARCHAR2(200)   NOT NULL,
+    idRealisateur   NUMBER,
+    titre           VARCHAR2(120),
+    anneeSortie     NUMBER(4),
+    dureeMinutes    NUMBER(4),
+    langueOriginale VARCHAR2(30),
+    resume          VARCHAR2(1000),
+    urlAffiche      VARCHAR2(200),
     CONSTRAINT pk_film PRIMARY KEY (idFilm),
     CONSTRAINT fk_film_realisateur
         FOREIGN KEY (idRealisateur) REFERENCES personne (idPersonne)
@@ -99,7 +90,7 @@ CREATE TABLE film (
 
 CREATE TABLE bandeAnnonce (
     idFilm          NUMBER          NOT NULL,
-    lien            VARCHAR2(300)   NOT NULL,
+    lien            VARCHAR2(300),
     CONSTRAINT pk_bandeannonce PRIMARY KEY (idFilm, lien),
     CONSTRAINT fk_bandeannonce_film
         FOREIGN KEY (idFilm) REFERENCES film (idFilm)
@@ -119,7 +110,7 @@ CREATE TABLE pays (
 CREATE TABLE interpretation (
     idFilm          NUMBER          NOT NULL,
     idPersonne      NUMBER          NOT NULL,
-    nomPersonnage   VARCHAR2(80)    NOT NULL,
+    nomPersonnage   VARCHAR2(80),
     CONSTRAINT pk_interpretation PRIMARY KEY (idFilm, idPersonne, nomPersonnage),
     CONSTRAINT fk_interpretation_film
         FOREIGN KEY (idFilm) REFERENCES film (idFilm)
@@ -161,9 +152,6 @@ CREATE TABLE filmPays (
         FOREIGN KEY (nomPays) REFERENCES pays (nom)
 );
 
--- ---------------------------------------------------------------------------
--- Inventaire et locations
--- ---------------------------------------------------------------------------
 CREATE TABLE copie (
     codeCopie       VARCHAR2(20)    NOT NULL,
     idFilm          NUMBER          NOT NULL,
@@ -186,9 +174,13 @@ CREATE TABLE location (
         FOREIGN KEY (codeCopie) REFERENCES copie (codeCopie)
 );
 
--- Trois forfaits du cas 1. La duree du forfait A est illimitee.
-INSERT INTO forfait (code, cout, locationsMax, dureeMaxJours) VALUES ('D', 5, 1, 10);
-INSERT INTO forfait (code, cout, locationsMax, dureeMaxJours) VALUES ('I', 10, 5, 30);
-INSERT INTO forfait (code, cout, locationsMax, dureeMaxJours) VALUES ('A', 15, 10, NULL);
+INSERT INTO forfait (code, cout, locationsMax, dureeMaxJours)
+VALUES ('D', 5, 1, 10);
+
+INSERT INTO forfait (code, cout, locationsMax, dureeMaxJours)
+VALUES ('I', 10, 5, 30);
+
+INSERT INTO forfait (code, cout, locationsMax, dureeMaxJours)
+VALUES ('A', 15, 10, NULL);
 
 COMMIT;
