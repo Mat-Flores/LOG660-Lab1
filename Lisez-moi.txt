@@ -1,0 +1,158 @@
+===========================================================
+LOG660 - TP1 - Équipe 201
+Chargement de données XML vers une base Oracle
+===========================================================
+
+Auteurs :
+- Kolawolé GBADAMASSI
+- Nom Prénom
+- Nom Prénom
+- Nom Prénom
+
+
+1. DESCRIPTION DU PROJET
+-----------------------------------------------------------
+
+Ce laboratoire consiste à charger des données provenant de
+fichiers XML vers une base de données Oracle.
+
+Le programme Java permet de :
+- lire les fichiers XML contenant les informations sur les
+  personnes, les films et les clients ;
+- traiter les données lues ;
+- insérer les informations correspondantes dans les tables
+  Oracle du laboratoire.
+
+L'ordre d'exécution attendu est :
+
+1) Création des tables de la base de données ;
+2) Exécution du programme Java de chargement ;
+3) Application des contraintes supplémentaires.
+
+
+2. STRUCTURE DU PROJET
+-----------------------------------------------------------
+
+L'organisation du répertoire est la suivante :
+
+.
+├── LISEZMOI.txt
+├── log660-labo1-equipe201.pdf
+│
+├── src/
+│   ├── Main.java
+│   ├── LectureXML.java
+│   ├── GestionFlux.java
+│   └── EcritureBD.java
+│
+├── lib/
+│   ├── ojdbc11.jar
+│   ├── xmlpull_1_1_3_4c.jar
+│   └── xpp3-1.1.3.4.C.jar
+│
+├── xml/
+│   ├── personnes.xml
+│   ├── films.xml
+│   └── clients.xml
+│
+└── sql/
+    ├── T2-Tables.sql
+    └── T3-Contraintes.sql
+
+
+3. PRÉREQUIS
+-----------------------------------------------------------
+
+Avant l'exécution du laboratoire, les éléments suivants
+doivent être disponibles :
+
+- Java JDK installé (version compatible avec le laboratoire);
+- Accès au réseau de l'ÉTS (connexion VPN nécessaire depuis
+  l'extérieur du campus);
+- Accès à la base Oracle LOG660;
+- SQL Developer ou un outil équivalent pour exécuter les
+  scripts SQL.
+
+
+4. CRÉATION DE LA BASE DE DONNÉES
+-----------------------------------------------------------
+
+Avant de lancer le programme Java, exécuter le script :
+
+T2-Tables.sql
+
+Ce script permet de créer les tables nécessaires au
+chargement des données.
+
+
+5. COMPILATION DU PROGRAMME JAVA
+-----------------------------------------------------------
+
+Se placer dans le répertoire contenant les fichiers Java.
+
+Sous Windows, exécuter :
+
+javac -encoding UTF-8 -cp 
+"ojdbc11.jar;xmlpull_1_1_3_4c.jar;xpp3-1.1.3.4.C.jar" *.java
+
+
+6. EXÉCUTION DU PROGRAMME
+-----------------------------------------------------------
+
+Une fois la compilation terminée, lancer :
+
+java -cp 
+".;ojdbc11.jar;xmlpull_1_1_3_4c.jar;xpp3-1.1.3.4.C.jar" 
+Main personnes.xml films.xml clients.xml
+
+
+7. CONFIGURATION DE LA CONNEXION ORACLE
+-----------------------------------------------------------
+
+La connexion à la base de données est définie dans le fichier :
+
+EcritureBD.java
+
+Les paramètres doivent correspondre à la base Oracle fournie
+pour le laboratoire LOG660.
+
+Paramètres utilisés :
+
+Serveur :
+bdlog660.ens.ad.etsmtl.ca
+
+Port :
+1521
+
+Service :
+ORCLPDB1
+
+Utilisateur :
+EQUIPEXXX
+
+
+8. ORDRE COMPLET D'EXÉCUTION
+-----------------------------------------------------------
+
+1. Se connecter au VPN ÉTS si nécessaire.
+2. Créer les tables avec le script SQL fourni.
+3. Compiler les fichiers Java.
+4. Exécuter le programme Java avec les fichiers XML.
+5. Vérifier les données insérées dans Oracle.
+6. Exécuter le script des contraintes.
+
+
+9. INFORMATIONS IMPORTANTES
+-----------------------------------------------------------
+
+Les fichiers compilés (.class) ne font pas partie de la remise.
+
+Le projet doit être exécuté sous Windows.
+
+Tous les chemins utilisés dans les commandes doivent être
+adaptés à l'emplacement réel du projet.
+
+
+===========================================================
+FIN DU DOCUMENT
+===========================================================
